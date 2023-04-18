@@ -16,7 +16,7 @@ INSET	= $(BEGIN)$(GREEN)+ $(BLUE)
 
 NAME		=	phonebook
 
-SRCS		=	PhoneBook.cpp
+SRCS		=	PhoneBook.cpp Contact.cpp main.cpp
 
 INC			=	-I ./include
 
