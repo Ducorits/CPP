@@ -6,7 +6,7 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/18 15:05:07 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/04/18 19:46:35 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/04/19 16:06:40 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ int	main(void)
 	PhoneBook	book;
 
 	std::cout << "PhoneBook. Type one of the following commands to start: [ADD, SEARCH, EXIT]" << std::endl;
-	std::cin >> input;
+	std::getline(std::cin, input);
 
 	while (1)
 	{
 		if (input == "ADD")
 		{
-			std::cout << "test " << input << std::endl;
 			book.add();
 		}
 		else if (input == "SEARCH")
@@ -41,7 +40,7 @@ int	main(void)
 			book.exit();
 			break;
 		}
-		std::cin >> input;
+		std::getline(std::cin, input);
 	}
 	return (0);
 }
