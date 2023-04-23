@@ -6,11 +6,13 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/18 13:43:04 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/04/22 15:52:52 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/04/23 20:19:00 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#ifndef __CONTACT_H__
+#define __CONTACT_H__
 #include <string>
 
 enum e_attribute {
@@ -36,3 +38,5 @@ class Contact
 		std::string	phone_number;
 		std::string	darkest_secret;
 };
+
+#endif /* __CONTACT_H__ */
