@@ -6,7 +6,7 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/17 19:40:40 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/04/22 18:39:59 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/04/23 20:06:09 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,28 @@ void	PhoneBook::search(void)
 		std::cout << std::setw(10) << std::right << last_name << "|";
 		std::cout << std::setw(10) << std::right << nickname << "|" << std::endl;
 	}
-	std::cout << "Entry to display: ";
-	std::getline(std::cin, str);
-	i = std::stoi(str);
+	while (1)
+	{
+		std::cout << "Select an entry to display: ";
+		std::getline(std::cin, str);
+		if (str.length() == 1 && isdigit(str[0]))
+		{
+			i = std::stoi(str);
+			if (i < 0 || i > 7)
+				std::cout << "Invalid input: Must a a number between 0 and 7." << std::endl;
+			else
+			{
+				if (i > index - 1)
+					std::cout << "Entry is empty." << std::endl;
+				else
+					contacts[i].print();
+				break;
+			}
+		}
+		else
+			std::cout << "Invalid input: Only a single digit allowed." << std::endl;
+	}
 }
-
-void	PhoneBook::exit(void)
-{
-
-}
-
-// void	PhoneBook::print_contact(void)
-// {
-
-// }
 
 PhoneBook::PhoneBook(void)
 {

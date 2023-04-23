@@ -14,11 +14,11 @@ SAVE	= \0337
 RESTORE	= \0338
 INSET	= $(BEGIN)$(GREEN)+ $(BLUE)
 
-NAME		=	phonebook
+NAME		=	friendtome
 
 SRCS		=	PhoneBook.cpp Contact.cpp main.cpp
 
-INC			=	-I ./include
+INC			=	-I .
 
 OBJS		=	$(patsubst %.c, obj/%.o, $(SRCS))
 
@@ -44,7 +44,7 @@ endif
 $(NAME): $(OBJS)
 	@printf "$(INSET)"
 	$(CC) $(CFLAGS) $(INC) $^ -o $@
-	@printf "$(GREEN)+ $(ORANGE)Created executable.\n$(RESET)"
+	@printf "$(GREEN)+ $(ORANGE)Created "$(NAME)" executable.\n$(RESET)"
 
 all: $(NAME)
 

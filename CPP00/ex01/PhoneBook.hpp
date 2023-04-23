@@ -6,7 +6,7 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/17 19:40:37 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/04/19 16:52:05 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/04/23 20:06:07 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,5 @@ class PhoneBook {
 	public:
 		void	add(void);
 		void	search(void);
-		void	exit(void);
 		PhoneBook(void);
 };
