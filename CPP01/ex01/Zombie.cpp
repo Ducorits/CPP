@@ -6,16 +6,16 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 21:10:51 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/04/23 22:18:57 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/04/24 15:13:52 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Zombie.hpp>
 #include <iostream>
 
-Zombie::Zombie(std::string n)
+Zombie::Zombie()
 {
-	this->name = n;
+	this->name = "Garry";
 }
 
 Zombie::~Zombie()

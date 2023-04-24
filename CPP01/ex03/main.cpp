@@ -6,22 +6,33 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 21:25:37 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/04/24 15:10:34 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/04/24 16:19:20 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Zombie.hpp>
+#include <string>
+#include <iostream>
+#include <Weapon.hpp>
+#include <HumanA.hpp>
+#include <HumanB.hpp>
 
-int	main()
+int main()
 {
-	Zombie *horde;
-	int		horde_size = 20;
-
-	horde = zombieHorde(horde_size, "Roger");
-	for (int i = 0; i < horde_size; i++)
 	{
-		horde[i].announce();
+		Weapon club = Weapon("crude spiked club");
+		HumanA bob("Bob", club);
+		bob.attack();
+		club.setType("some other type of club");
+		bob.attack();
 	}
-	delete[] horde;
-	return (0);
+	{
+		Weapon club = Weapon("crude spiked club");
+		HumanB jim("Jim");
+		jim.setWeapon(club);
+		jim.attack();
+		club.setType("some other type of club");
+		jim.attack();
+	}
+
+	return 0;
 }

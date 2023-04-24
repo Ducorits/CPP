@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.cpp                                           :+:    :+:            */
+/*   HumanA.hpp                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/04/23 21:25:37 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/04/24 15:10:34 by dritsema      ########   odam.nl         */
+/*   Created: 2023/04/24 15:54:00 by dritsema      #+#    #+#                 */
+/*   Updated: 2023/04/24 17:04:27 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Zombie.hpp>
+#pragma once
+#ifndef __HUMANA_H__
+#define __HUMANA_H__
 
-int	main()
+#include <string>
+#include <Weapon.hpp>
+
+class HumanA
 {
-	Zombie *horde;
-	int		horde_size = 20;
+	private:
+		std::string	name;
+		Weapon		*weapon;
+	public:
+		HumanA(std::string n, Weapon &w);
+		~HumanA();
+		void	attack(void);
+};
 
-	horde = zombieHorde(horde_size, "Roger");
-	for (int i = 0; i < horde_size; i++)
-	{
-		horde[i].announce();
-	}
-	delete[] horde;
-	return (0);
-}
+#endif /* __HUMANA_H__ */

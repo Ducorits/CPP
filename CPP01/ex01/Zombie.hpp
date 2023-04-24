@@ -6,7 +6,7 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/23 21:10:56 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/04/23 22:19:03 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/04/24 15:12:58 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Zombie
 private:
 	std::string	name;
 public:
-	Zombie(std::string n = "Zombie");
+	Zombie();
 	~Zombie();
 	void	announce( void );
 	void	set_name(std::string n);

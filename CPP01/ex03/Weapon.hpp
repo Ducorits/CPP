@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.cpp                                           :+:    :+:            */
+/*   Weapon.hpp                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/04/23 21:25:37 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/04/24 15:10:34 by dritsema      ########   odam.nl         */
+/*   Created: 2023/04/24 15:53:59 by dritsema      #+#    #+#                 */
+/*   Updated: 2023/04/24 17:04:03 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Zombie.hpp>
+#pragma once
+#ifndef __WEAPON_H__
+#define __WEAPON_H__
 
-int	main()
+#include <string>
+
+class Weapon
 {
-	Zombie *horde;
-	int		horde_size = 20;
+	private:
+		std::string	type;
+	public:
+		Weapon();
+		Weapon(std::string str);
+		~Weapon();
+		const std::string	&getType(void);
+		void		setType(std::string str);
+};
 
-	horde = zombieHorde(horde_size, "Roger");
-	for (int i = 0; i < horde_size; i++)
-	{
-		horde[i].announce();
-	}
-	delete[] horde;
-	return (0);
-}
+#endif /* __WEAPON_H__ */

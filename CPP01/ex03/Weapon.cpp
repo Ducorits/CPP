@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.cpp                                           :+:    :+:            */
+/*   Weapon.cpp                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/04/23 21:25:37 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/04/24 15:10:34 by dritsema      ########   odam.nl         */
+/*   Created: 2023/04/24 15:53:56 by dritsema      #+#    #+#                 */
+/*   Updated: 2023/04/24 17:03:50 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Zombie.hpp>
+#include <Weapon.hpp>
 
-int	main()
+Weapon::Weapon() {}
+
+Weapon::Weapon(std::string str)
 {
-	Zombie *horde;
-	int		horde_size = 20;
+	this->type = str;
+}
 
-	horde = zombieHorde(horde_size, "Roger");
-	for (int i = 0; i < horde_size; i++)
-	{
-		horde[i].announce();
-	}
-	delete[] horde;
-	return (0);
+Weapon::~Weapon()
+{
+
+}
+
+const std::string	&Weapon::getType(void)
+{
+	return (this->type);
+}
+
+void		Weapon::setType(std::string str)
+{
+	this->type = str;
 }
