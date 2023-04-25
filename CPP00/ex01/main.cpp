@@ -6,7 +6,7 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/18 15:05:07 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/04/23 20:12:00 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/04/25 17:17:45 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 #include <Contact.hpp>
 #include <iostream>
 #include <string>
-
-
-void check_leaks()
-{
-	system("leaks friendtome");
-}
 
 int	main(void)
 {
@@ -30,15 +24,17 @@ int	main(void)
 	while (1)
 	{
 		std::cout << "MyFriendsTM: ";
-		std::getline(std::cin, input);
-
-		if (input == "ADD")
-			book.add();
-		else if (input == "SEARCH")
-			book.search();
-		else if (input == "EXIT")
+		if (std::getline(std::cin, input))
+		{
+			if (input == "ADD")
+				book.add();
+			else if (input == "SEARCH")
+				book.search();
+			else if (input == "EXIT")
+				break;
+		}
+		else
 			break;
 	}
-	atexit(check_leaks);
 	return (0);
 }
