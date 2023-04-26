@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   phonebook.cpp                                      :+:    :+:            */
+/*   PhoneBook.cpp                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/17 19:40:40 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/04/23 20:06:09 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/04/26 11:06:34 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,24 @@ void	PhoneBook::add(void)
 {
 	Contact		c;
 	std::string	str;
+	std::string	prompts[5] = {"  First name  : ", "  Last name   : ", "   Nickname   : ", " Phone number : ", "Darkest secret: "};
+	int 		i;
 
-	std::cout << "Adding contact please enter the following info." << std::endl;
-	std::cout << "  First name  : ";
-	std::getline(std::cin, str);
-	c.setAttribute(FIRST_NAME, str);
-	std::cout << "  Last name   : ";
-	std::getline(std::cin, str);
-	c.setAttribute(LAST_NAME, str);
-	std::cout << "   Nickname   : ";
-	std::getline(std::cin, str);
-	c.setAttribute(NICKNAME, str);
-	std::cout << " Phone number : ";
-	std::getline(std::cin, str);
-	c.setAttribute(PHONE_NUMBER, str);
-	std::cout << "Darkest secret: ";
-	std::getline(std::cin, str);
-	c.setAttribute(DARKEST_SECRET, str);
+	std::cout << "Adding new contact, please enter the following information." << std::endl;
+	i = 0;
+	while (i < 5)
+	{
+		std::cout << prompts[i];
+		if (!std::getline(std::cin, str))
+			exit(1);
+		if (str.empty())
+		{
+			std::cout << "You didn't input any information. Please enter something." << std::endl;
+			continue;
+		}
+		c.setAttribute(static_cast<e_attribute>(i), str);
+		i++;
+	}
 
 	if (index < 8)
 	{
@@ -44,9 +45,9 @@ void	PhoneBook::add(void)
 	}
 	else
 	{
-		for (int i = 7; i > 0; i--)
-			contacts[i] = contacts[i - 1];
-		contacts[0] = c;
+		for (int j = 0; j < 7; j++)
+			contacts[j] = contacts[j + 1];
+		contacts[7] = c;
 	}
 	std::cout << "Added " << c.getAttribute(FIRST_NAME) << " to contacts" << std::endl;
 }
@@ -78,7 +79,8 @@ void	PhoneBook::search(void)
 	while (1)
 	{
 		std::cout << "Select an entry to display: ";
-		std::getline(std::cin, str);
+		if (!std::getline(std::cin, str))
+			exit(1);
 		if (str.length() == 1 && isdigit(str[0]))
 		{
 			i = std::stoi(str);

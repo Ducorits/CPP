@@ -6,7 +6,7 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/18 13:43:04 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/04/23 20:19:00 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/04/26 10:55:58 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ class Contact
 
 	private:
 		std::string attributes[5];
-		std::string	first_name;
-		std::string	last_name;
-		std::string	nickname;
-		std::string	phone_number;
-		std::string	darkest_secret;
 };
 
 #endif /* __CONTACT_H__ */
