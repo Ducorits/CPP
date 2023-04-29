@@ -20,7 +20,7 @@ SRCS		=	main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 
 INC			=	-I .
 
-OBJS		=	$(patsubst %.c, obj/%.o, $(SRCS))
+OBJS		=	$(patsubst %.cpp, obj/%.o, $(SRCS))
 
 COMPILED	=	0
 
@@ -50,7 +50,7 @@ all: $(NAME)
 
 .PHONY: clean fclean re rere debug
 
-obj/%.o: src/%.c
+obj/%.o: %.cpp
 	@mkdir -p $(@D)
 	@printf "$(PERCENT):$(RESET) "
 	$(CC) $(CFLAGS) $(INC) -c $^ -o $@

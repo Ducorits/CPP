@@ -14,9 +14,9 @@ SAVE	= \0337
 RESTORE	= \0338
 INSET	= $(BEGIN)$(GREEN)+ $(BLUE)
 
-NAME		=	horde
+NAME		=	replace-otron
 
-SRCS		=	main.cpp Zombie.cpp zombieHorde.cpp
+SRCS		=	main.cpp
 
 INC			=	-I .
 
