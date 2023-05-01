@@ -14,9 +14,9 @@ SAVE	= \0337
 RESTORE	= \0338
 INSET	= $(BEGIN)$(GREEN)+ $(BLUE)
 
-NAME		=	unnecesary_violence
+NAME		=	harl
 
-SRCS		=	main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+SRCS		=	main.cpp Harl.cpp
 
 INC			=	-I .
 
