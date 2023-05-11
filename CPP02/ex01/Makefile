@@ -68,5 +68,8 @@ fclean: clean
 
 re: fclean all
 
+run: $(NAME)
+	./$(NAME)
+
 debug:
 	@make DEBUG=1

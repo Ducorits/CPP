@@ -6,12 +6,13 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/03 18:19:59 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/08 17:47:07 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/05/11 15:05:57 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Fixed.hpp>
 #include <cmath>
+#include <iostream>
 
 Fixed::Fixed()
 {
@@ -54,10 +55,16 @@ void	Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat( void ) const
 {
-	return ();
+	return (static_cast<float>(value) / (1 << fractional));
 }
 
 int		Fixed::toInt( void ) const
 {
-	return ();
+	return (value >> fractional);
+}
+
+std::ostream& operator<<(std::ostream &os, const Fixed &fixed_point)
+{
+	os << fixed_point.toFloat();
+	return (os);
 }

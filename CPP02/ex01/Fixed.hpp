@@ -6,13 +6,15 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/03 18:07:14 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/08 17:40:44 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/05/11 15:01:25 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #ifndef __FIXED_HPP__
 #define __FIXED_HPP__
+
+#include <iostream>
 
 class Fixed
 {
@@ -31,5 +33,7 @@ class Fixed
 		float	toFloat( void ) const;
 		int		toInt( void ) const;
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed &fixed_point);
 
 #endif /* __FIXED_HPP__ */
