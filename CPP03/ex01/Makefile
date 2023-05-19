@@ -14,7 +14,7 @@ SAVE	= \0337
 RESTORE	= \0338
 INSET	= $(BEGIN)$(GREEN)+ $(BLUE)
 
-NAME		=	clap_a_trap
+NAME		=	fixed
 
 SRCS		=	main.cpp ClapTrap.cpp
 
