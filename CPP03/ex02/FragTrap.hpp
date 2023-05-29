@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/26 13:23:41 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/26 15:19:28 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/05/26 13:32:36 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include <ClapTrap.hpp>
 
-class FragTrap : virtual public ClapTrap
+class FragTrap : public ClapTrap
 {
 	private:
 		std::string name;
