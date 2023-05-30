@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Dog.hpp                                            :+:    :+:            */
+/*   WrongAnimal.hpp                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/05/29 18:56:03 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/30 17:03:50 by dritsema      ########   odam.nl         */
+/*   Created: 2023/05/30 12:57:52 by dritsema      #+#    #+#                 */
+/*   Updated: 2023/05/30 16:55:24 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef __DOG_HPP__
-#define __DOG_HPP__
+#ifndef __WRONGANIMAL_HPP__
+#define __WRONGANIMAL_HPP__
 
 #include <string>
-#include <Animal.hpp>
 
-class Dog : public Animal
+class WrongAnimal
 {
 	public:
-		Dog();
-		Dog(const Dog &other);
-		~Dog();
+		WrongAnimal();
+		WrongAnimal(const WrongAnimal &other);
+		~WrongAnimal();
 
-		Dog& operator=(const Dog& other);
+		WrongAnimal& operator=(const WrongAnimal& other);
 
 		void makeSound(void) const;
+		std::string getType(void) const;
+		void setType(std::string str);
 
 	protected:
-
+		std::string type;
+	
 	private:
 };
 
-#endif /* __DOG_HPP__ */
+#endif /* __WRONGANIMAL_HPP__ */

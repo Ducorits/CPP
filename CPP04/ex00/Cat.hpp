@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 18:56:17 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/29 19:37:24 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/05/30 17:00:08 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,14 @@ class Cat : public Animal
 		Cat();
 		Cat(const Cat &other);
 		~Cat();
+
 		Cat& operator=(const Cat& other);
+
+		void makeSound(void) const;
+
+	protected:
+	
+	private:
 };
 
 #endif /* __CAT_HPP__ */
-

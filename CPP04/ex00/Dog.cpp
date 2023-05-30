@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:10:24 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/29 19:47:04 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/05/30 17:01:37 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,7 @@ Dog& Dog::operator=(const Dog& other)
 	return (*this);
 }
 
+void Dog::makeSound() const
+{
+	 std::cout << "Woof!" << std::endl;
+}

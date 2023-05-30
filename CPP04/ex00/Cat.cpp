@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:04:41 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/29 19:46:54 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/05/30 17:26:34 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Cat::Cat()
 
 Cat::Cat(const Cat &other)
 {
-	type = other.type;
+	*this = other;
 	std::cout << "Cat copy constructor, Prrrrrr" << std::endl;
 }
 
@@ -33,10 +33,13 @@ Cat::~Cat()
 Cat& Cat::operator=(const Cat& other)
 {
 	if (this != &other)
-	{
-		type = other.type;
-	}
+		return (*this);
+	type = other.type;
 	std::cout << "Cat copy assigment operator, Meeeooow!" << std::endl;
 	return (*this);
 }
 
+void Cat::makeSound() const
+{
+	 std::cout << "Meeeooow!" << std::endl;
+}

@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 18:12:12 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/29 19:45:57 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/05/30 17:58:43 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,21 @@
 
 class Animal
 {
-	protected:
-		std::string type;
 	public:
 		Animal();
 		Animal(const Animal &other);
-		~Animal();
+		virtual ~Animal();
+
 		Animal& operator=(const Animal& other);
-		void makeSound(void) const;
-		std::string getType(void) const;
-		void setType(std::string str);
+
+		virtual void	makeSound(void) const;
+		std::string		getType(void) const;
+		void			setType(std::string str);
+
+	protected:
+		std::string type;
+
+	private:
 };
 
 #endif /* __ANIMAL_HPP__ */

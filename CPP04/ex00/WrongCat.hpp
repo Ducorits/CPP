@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   Dog.hpp                                            :+:    :+:            */
+/*   WrongCat.hpp                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/05/29 18:56:03 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/30 17:03:50 by dritsema      ########   odam.nl         */
+/*   Created: 2023/05/30 13:30:12 by dritsema      #+#    #+#                 */
+/*   Updated: 2023/05/30 16:58:58 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef __DOG_HPP__
-#define __DOG_HPP__
+#ifndef __WRONGCAT_HPP__
+#define __WRONGCAT_HPP__
 
 #include <string>
-#include <Animal.hpp>
+#include <WrongAnimal.hpp>
 
-class Dog : public Animal
+class WrongCat : public WrongAnimal
 {
 	public:
-		Dog();
-		Dog(const Dog &other);
-		~Dog();
+		WrongCat();
+		WrongCat(const WrongCat &other);
+		~WrongCat();
 
-		Dog& operator=(const Dog& other);
+		WrongCat& operator=(const WrongCat& other);
 
 		void makeSound(void) const;
 
-	protected:
-
 	private:
+	
+	protected:
 };
 
-#endif /* __DOG_HPP__ */
+#endif /* __WRONGCAT_HPP__ */
