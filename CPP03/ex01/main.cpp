@@ -6,7 +6,7 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/03 18:05:40 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/24 17:04:31 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/01 20:13:37 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ int	main(void)
 	b.attack("Henry");
 	b.guardGate();
 
-	for (int i = 0; i < 50; i++)
+	int i = 0;
+	while (i < 51)
 	{
 		b.attack("Hans");
-		std::cout << i << std::endl;
+		i++;
 	}
+	std::cout << i << " attacks have been tried" << std::endl;
 	return (0);
 }

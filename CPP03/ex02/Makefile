@@ -14,7 +14,7 @@ SAVE	= \0337
 RESTORE	= \0338
 INSET	= $(BEGIN)$(GREEN)+ $(BLUE)
 
-NAME		=	scav_a_trap
+NAME		=	FragScav_a_trap
 
 SRCS		=	main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 

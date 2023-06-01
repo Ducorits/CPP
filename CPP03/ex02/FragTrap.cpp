@@ -6,12 +6,21 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/26 13:23:37 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/26 13:34:48 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/01 21:12:57 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <FragTrap.hpp>
 #include <iostream>
+
+FragTrap::FragTrap()
+{
+	name = "";
+	hit_points = 100;
+	energy_points = 100;
+	attack_damage = 30;
+	std::cout << name << " has specialized into a FragTrap." << std::endl;
+}
 
 FragTrap::FragTrap(const std::string& str) : ClapTrap::ClapTrap(str)
 {
@@ -39,14 +48,13 @@ FragTrap::~FragTrap()
 
 FragTrap& FragTrap::operator=(const FragTrap& other)
 {
-	if (this != &other)
-	{
-		name = other.name;
-		hit_points = other.hit_points;
-		energy_points = other.energy_points;
-		attack_damage = other.attack_damage;
-	}
-	std::cout << name << " was copied. So now there could be multiple " << name << "s." << std::endl;
+	if (this == &other)
+		return (*this);
+	name = other.name;
+	hit_points = other.hit_points;
+	energy_points = other.energy_points;
+	attack_damage = other.attack_damage;
+	std::cout << name << " was copied. So now there could be multiple " << name << std::endl;
 	return (*this);
 }
 
@@ -57,6 +65,8 @@ void FragTrap::attack(const std::string& target)
 		energy_points -= 1;
 		std::cout << "FragTrap " << name << ", attacks " << target << ", causing " << attack_damage << " points of damage!" << std::endl;
 	}	
+	else
+		std::cout << "FragTrap " << name << " Cannot attack anymore. He is incapable. No I don't know what happend. Let me be!" << std::endl;
 }
 
 void FragTrap::takeDamage(unsigned int amount)
@@ -66,8 +76,10 @@ void FragTrap::takeDamage(unsigned int amount)
 		hit_points -= amount;
 		if (hit_points < 0)
 			hit_points = 0;
+		std::cout << "FragTrap " << name << ", took " << amount << " damage!" << std::endl;
 	}
-	std::cout << "FragTrap " << name << ", took " << amount << " damage!" << std::endl;
+	else
+		std::cout << "Poor " << name << " is already broken. Stop it!" << std::endl;
 }
 
 void FragTrap::beRepaired(unsigned int amount)
@@ -76,8 +88,10 @@ void FragTrap::beRepaired(unsigned int amount)
 	{
 		energy_points -= 1;
 		hit_points += amount;
+		std::cout << "FragTrap " << name << ", regenerated " << amount << " hit points!" << std::endl;
 	}
-	std::cout << "FragTrap " << name << ", regenerated " << amount << " hit points!" << std::endl;
+	else
+		std::cout << "FragTrap " << name << " is sooooo tired or broken idk, that it cannot possibly even try to repair itself" << std::endl;
 }
 
 void FragTrap::highFivesGuys(void)

@@ -6,12 +6,21 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/03 18:19:59 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/19 16:25:31 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/01 19:58:44 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ClapTrap.hpp>
 #include <iostream>
+
+ClapTrap::ClapTrap()
+{
+	name = "";
+	hit_points = 10;
+	energy_points = 10;
+	attack_damage = 0;
+	std::cout << "ClapTrap '" << name << "' was brought into existence." << std::endl;
+}
 
 ClapTrap::ClapTrap(const std::string& str)
 {
@@ -39,14 +48,13 @@ ClapTrap::~ClapTrap()
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
-	if (this != &other)
-	{
-		name = other.name;
-		hit_points = other.hit_points;
-		energy_points = other.energy_points;
-		attack_damage = other.attack_damage;
-	}
-	std::cout << name << " was copied. So now there could be multiple " << name << "s." << std::endl;
+	if (this == &other)
+		return (*this);
+	name = other.name;
+	hit_points = other.hit_points;
+	energy_points = other.energy_points;
+	attack_damage = other.attack_damage;
+	std::cout << name << " was copied. So now there could be multiple " << name << std::endl;
 	return (*this);
 }
 
@@ -57,6 +65,8 @@ void ClapTrap::attack(const std::string& target)
 		energy_points -= 1;
 		std::cout << "ClapTrap " << name << ", attacks " << target << ", causing " << attack_damage << " points of damage!" << std::endl;
 	}	
+	else
+		std::cout << "ClapTrap " << name << " tried to attack " << target << " but failed due to a lack of energy or hitpoints" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -76,6 +86,8 @@ void ClapTrap::beRepaired(unsigned int amount)
 	{
 		energy_points -= 1;
 		hit_points += amount;
+		std::cout << "ClapTrap " << name << ", regenerated " << amount << " hit points!" << std::endl;
 	}
-	std::cout << "ClapTrap " << name << ", regenerated " << amount << " hit points!" << std::endl;
+	else
+		std::cout << "ClapTrap " << name << " tried to regenerate but failed due to a lack of emergy or hit points" << std::endl;
 }

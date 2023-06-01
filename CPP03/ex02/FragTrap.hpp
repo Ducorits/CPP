@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/26 13:23:41 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/26 13:32:36 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/01 21:13:24 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class FragTrap : public ClapTrap
 		int energy_points;
 		int attack_damage;
 	public:
+		FragTrap();
 		FragTrap(const std::string& str);
 		FragTrap(const FragTrap &other);
 		~FragTrap();

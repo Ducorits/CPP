@@ -6,7 +6,7 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/03 18:07:14 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/19 19:04:00 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/01 20:01:56 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class ClapTrap
 		int energy_points;
 		int attack_damage;
 	public:
+		ClapTrap();
 		ClapTrap(const std::string& str);
 		ClapTrap(const ClapTrap &other);
 		~ClapTrap();
