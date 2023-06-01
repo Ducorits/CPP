@@ -6,7 +6,7 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/03 18:05:40 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/12 16:52:55 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/01 15:24:02 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ int	main(void)
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
 	std::cout << Fixed::max( a, b ) << std::endl;
+
+	std::cout << --a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a-- << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b * b << std::endl;
+	std::cout << b / b << std::endl;
+	std::cout << b + b << std::endl;
+	std::cout << b - b << std::endl;
 
 	return 0;
 }

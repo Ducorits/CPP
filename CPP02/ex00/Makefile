@@ -70,3 +70,6 @@ re: fclean all
 
 debug:
 	@make DEBUG=1
+
+run: $(NAME)
+	./$(NAME)
