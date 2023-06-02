@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 18:12:12 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/02 11:04:23 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/02 14:27:10 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,12 @@ class Animal
 		virtual void	makeSound(void) const;
 		std::string		getType(void) const;
 		void			setType(std::string str);
-		virtual void setBrain(int i, std::string idea);
-		virtual std::string getBrain(int i);
 
 	protected:
 		std::string type;
 
 	private:
-		Brain* brain;
+
 };
 
 #endif /* __ANIMAL_HPP__ */

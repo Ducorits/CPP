@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:10:24 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/02 11:11:13 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/02 14:17:07 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 Dog::Dog()
 {
 	type = "Dog";
-	brain = new Brain();
 	std::cout << "Dog constructor, Woof!" << std::endl;
 }
 
@@ -28,7 +27,6 @@ Dog::Dog(const Dog &other)
 
 Dog::~Dog()
 {
-	delete brain;
 	std::cout << "Dog Destructor, HOWL!" << std::endl;
 }
 
@@ -47,22 +45,3 @@ void Dog::makeSound() const
 	 std::cout << "Woof!" << std::endl;
 }
 
-void	Dog::setBrain(int i, std::string idea)
-{
-	if (i > 99 || i < 0)
-	{
-		std::cout << "Invalid index for Brain" << std::endl;
-		return ;
-	}
-	brain->setIdea(i, idea);
-}
-
-std::string	Dog::getBrain(int i)
-{
-	if (i > 99 || i < 0)
-	{
-		std::cout << "Invalid index for Brain" << std::endl;
-		return (NULL);
-	}
-	return (brain->getIdea(i));
-}

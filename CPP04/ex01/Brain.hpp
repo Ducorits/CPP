@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/31 12:33:12 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/31 15:52:20 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/02 14:19:41 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Brain
 		Brain& operator=(const Brain& other);
 		
 		void setIdea(int i, std::string idea);
-		std::string getIdea(int i);
+		std::string getIdea(int i) const;
 
 	protected:
 		std::string ideas[100];

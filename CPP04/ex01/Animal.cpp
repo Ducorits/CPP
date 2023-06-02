@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   A_Animal.cpp                                       :+:    :+:            */
+/*   Animal.cpp                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 18:11:48 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/02 11:17:56 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/02 14:26:48 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,3 @@ void Animal::makeSound() const
 	 std::cout << "Animal * silence *" << std::endl;
 }
 
-void	Animal::setBrain(int i, std::string idea)
-{
-	if (i > 99 || i < 0)
-	{
-		std::cout << "Invalid index for Brain" << std::endl;
-		return ;
-	}
-	brain->setIdea(i, idea);
-}
-
-std::string	Animal::getBrain(int i)
-{
-	if (i > 99 || i < 0)
-	{
-		std::cout << "Invalid index for Brain" << std::endl;
-		return (NULL);
-	}
-	return (brain->getIdea(i));
-}

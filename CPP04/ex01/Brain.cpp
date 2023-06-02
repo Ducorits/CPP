@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/31 12:32:57 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/02 11:13:49 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/02 14:19:38 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	Brain::setIdea(int i, std::string idea)
 	ideas[i] = idea;
 }
 
-std::string	Brain::getIdea(int i)
+std::string	Brain::getIdea(int i) const
 {
 	if (i > 99)
 		return (ideas[99]);

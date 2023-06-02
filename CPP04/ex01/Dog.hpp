@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 18:56:03 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/31 16:31:08 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/02 14:14:40 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ class Dog : public Animal
 		Dog& operator=(const Dog& other);
 
 		void makeSound(void) const;
-		void setBrain(int i, std::string idea);
-		std::string getBrain(int i);
 
 	protected:
 

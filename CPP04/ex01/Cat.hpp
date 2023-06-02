@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 18:56:17 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/31 15:21:37 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/02 14:14:15 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ class Cat : public Animal
 		Cat& operator=(const Cat& other);
 
 		void makeSound(void) const;
-		void setBrain(int i, std::string idea);
-		std::string getBrain(int i);
 
 	protected:
 	
