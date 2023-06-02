@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/19 18:07:35 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/01 20:38:47 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/02 13:41:46 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,36 +60,10 @@ void ScavTrap::attack(const std::string& target)
 	if (energy_points > 0 && hit_points > 0)
 	{
 		energy_points -= 1;
-		std::cout << "ScavTrap " << name << ", attacks " << target << ", causing " << attack_damage << " points of damage!" << std::endl;
+		std::cout << "ScavTrap " << name << ", attacks " << target << ", causing " << attack_damage << " points of damage! 'Mwuhahaha Fall before the might of the ScavTrap! Hahahaha!'" << std::endl;
 	}
 	else
-		std::cout << "ScavTrap " << name << ", tried to attack but failed due to a lack of hit or energy points" << std::endl;
-}
-
-void ScavTrap::takeDamage(unsigned int amount)
-{
-	if (hit_points > 0)
-	{
-		hit_points -= amount;
-		if (hit_points < 0)
-			hit_points = 0;
-		std::cout << "ScavTrap " << name << ", took " << amount << " damage!" << std::endl;
-	}
-	else
-		std::cout << "ScavTrap " << name << " is already out of hit points. Stop bullying!" << std::endl;
-		
-}
-
-void ScavTrap::beRepaired(unsigned int amount)
-{
-	if (energy_points > 0 && hit_points > 0)
-	{
-		energy_points -= 1;
-		hit_points += amount;
-		std::cout << "ScavTrap " << name << ", regenerated " << amount << " hit points!" << std::endl;
-	}
-	else
-		std::cout << "ScavTrap " << name << " Cannot regenerate, for he may be too tired or simply already fully broken" << std::endl;
+		std::cout << "ScavTrap " << name << ", tried to attack but failed due to a lack of hit or energy points. 'Oh darn, it seems this ScavTrap lost it's might!'" << std::endl;
 }
 
 void ScavTrap::guardGate()

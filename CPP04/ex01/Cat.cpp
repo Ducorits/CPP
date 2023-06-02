@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:04:41 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/31 17:24:17 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/02 11:14:28 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ Cat::Cat(const Cat &other)
 
 Cat::~Cat()
 {
+	delete brain;
 	std::cout << "Cat Destructor, Meowie" << std::endl;
 }
 

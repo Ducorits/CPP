@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   FragTrap.hpp                                       :+:    :+:            */
+/*   WrongCat.hpp                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/05/26 13:23:41 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/02 13:38:42 by dritsema      ########   odam.nl         */
+/*   Created: 2023/05/30 13:30:12 by dritsema      #+#    #+#                 */
+/*   Updated: 2023/05/30 16:58:58 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef __FRAGTRAP_HPP__
-#define __FRAGTRAP_HPP__
+#ifndef __WRONGCAT_HPP__
+#define __WRONGCAT_HPP__
 
-#include <ClapTrap.hpp>
+#include <string>
+#include <WrongAnimal.hpp>
 
-class FragTrap : public ClapTrap
+class WrongCat : public WrongAnimal
 {
 	public:
-		FragTrap();
-		FragTrap(const std::string& str);
-		FragTrap(const FragTrap &other);
-		~FragTrap();
+		WrongCat();
+		WrongCat(const WrongCat &other);
+		~WrongCat();
 
-		FragTrap& operator=(const FragTrap& other);
+		WrongCat& operator=(const WrongCat& other);
 
-		void highFivesGuys(void);
-
-	protected:
+		void makeSound(void) const;
 
 	private:
+	
+	protected:
 };
 
-#endif /* __FRAGTRAP_HPP__ */
+#endif /* __WRONGCAT_HPP__ */

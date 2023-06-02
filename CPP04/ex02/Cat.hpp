@@ -1,36 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   FragTrap.hpp                                       :+:    :+:            */
+/*   Cat.hpp                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/05/26 13:23:41 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/02 13:38:42 by dritsema      ########   odam.nl         */
+/*   Created: 2023/05/29 18:56:17 by dritsema      #+#    #+#                 */
+/*   Updated: 2023/06/02 12:05:01 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef __FRAGTRAP_HPP__
-#define __FRAGTRAP_HPP__
+#ifndef __CAT_HPP__
+#define __CAT_HPP__
 
-#include <ClapTrap.hpp>
+#include <string>
+#include <A_Animal.hpp>
+#include <Brain.hpp>
 
-class FragTrap : public ClapTrap
+class Cat : public A_Animal
 {
 	public:
-		FragTrap();
-		FragTrap(const std::string& str);
-		FragTrap(const FragTrap &other);
-		~FragTrap();
+		Cat();
+		Cat(const Cat &other);
+		~Cat();
 
-		FragTrap& operator=(const FragTrap& other);
+		Cat& operator=(const Cat& other);
 
-		void highFivesGuys(void);
+		void makeSound(void) const;
+		void setBrain(int i, std::string idea);
+		std::string getBrain(int i) const;
+		std::string getType(void) const;
+		void setType(std::string str);
+
+
 
 	protected:
-
+	
 	private:
+		Brain* brain;
 };
 
-#endif /* __FRAGTRAP_HPP__ */
+#endif /* __CAT_HPP__ */

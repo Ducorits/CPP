@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   FragTrap.hpp                                       :+:    :+:            */
+/*   Brain.hpp                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/05/26 13:23:41 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/02 13:38:42 by dritsema      ########   odam.nl         */
+/*   Created: 2023/05/31 12:33:12 by dritsema      #+#    #+#                 */
+/*   Updated: 2023/05/31 15:52:20 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#ifndef __FRAGTRAP_HPP__
-#define __FRAGTRAP_HPP__
+#ifndef __BRAIN_HPP__
+#define __BRAIN_HPP__
 
-#include <ClapTrap.hpp>
+#include <string>
 
-class FragTrap : public ClapTrap
+class Brain
 {
 	public:
-		FragTrap();
-		FragTrap(const std::string& str);
-		FragTrap(const FragTrap &other);
-		~FragTrap();
+		Brain();
+		Brain(const Brain &other);
+		virtual ~Brain();
 
-		FragTrap& operator=(const FragTrap& other);
-
-		void highFivesGuys(void);
+		Brain& operator=(const Brain& other);
+		
+		void setIdea(int i, std::string idea);
+		std::string getIdea(int i);
 
 	protected:
+		std::string ideas[100];
 
 	private:
 };
 
-#endif /* __FRAGTRAP_HPP__ */
+#endif /* __BRAIN_HPP__ */
+

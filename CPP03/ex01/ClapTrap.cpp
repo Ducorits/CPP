@@ -6,7 +6,7 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/03 18:19:59 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/01 20:37:29 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/02 13:44:26 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void ClapTrap::attack(const std::string& target)
 	if (energy_points > 0 && hit_points > 0)
 	{
 		energy_points -= 1;
-		std::cout << "ClapTrap " << name << ", attacks " << target << ", causing " << attack_damage << " points of damage!" << std::endl;
+		std::cout << name << ", attacks " << target << ", causing " << attack_damage << " points of damage! 'Hahahaha suffer at my hands mortal!'" << std::endl;
 	}	
 	else
-		std::cout << "ClapTrap " << name << " tried to attack " << target << " but failed due to a lack of energy or hitpoints" << std::endl;
+		std::cout << name << " tried to attack " << target << " but failed due to a lack of energy or hitpoints. 'Oh noooo I didn't mean it I swear!'" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -74,7 +74,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 		if (hit_points < 0)
 			hit_points = 0;
 	}
-	std::cout << "ClapTrap " << name << ", took " << amount << " damage!" << std::endl;
+	std::cout << name << ", took " << amount << " damage! 'Oh the unbearable pain! Boo hoo....'" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -83,8 +83,8 @@ void ClapTrap::beRepaired(unsigned int amount)
 	{
 		energy_points -= 1;
 		hit_points += amount;
-		std::cout << "ClapTrap " << name << ", regenerated " << amount << " hit points!" << std::endl;
+		std::cout << name << ", regenerated " << amount << " hit points! 'I feel so much better, aah..." << std::endl;
 	}
 	else
-		std::cout << "ClapTrap " << name << " tried to regenerate but failed due to a lack of emergy or hit points" << std::endl;
+		std::cout << name << " tried to regenerate but failed due to a lack of emergy or hit points. 'I cry everytime...'" << std::endl;
 }

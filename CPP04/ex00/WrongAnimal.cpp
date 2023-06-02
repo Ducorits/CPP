@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/30 12:55:17 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/05/30 16:58:20 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/02 12:10:35 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void WrongAnimal::setType(std::string str)
 
 void WrongAnimal::makeSound() const
 {
-	 std::cout << "Generic Wrong animal sounds" << std::endl;
+	 std::cout << "Generic Wrong animal * silence *" << std::endl;
 }

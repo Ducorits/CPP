@@ -1,65 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   A_Animal.cpp                                       :+:    :+:            */
+/*   Dog.cpp                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/05/29 18:11:48 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/02 11:17:56 by dritsema      ########   odam.nl         */
+/*   Created: 2023/05/29 19:10:24 by dritsema      #+#    #+#                 */
+/*   Updated: 2023/06/02 11:49:20 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Animal.hpp>
+#include <Dog.hpp>
 #include <iostream>
 
-Animal::Animal()
+Dog::Dog()
 {
-	type = "Animal";
+	type = "Dog";
 	brain = new Brain();
-	std::cout << "Animal constructor" << std::endl;
+	std::cout << "Dog constructor, Woof!" << std::endl;
 }
 
-Animal::Animal(const Animal &other)
+Dog::Dog(const Dog &other)
 {
-	*this = other;
-	std::cout << "Animal copy constructor" << std::endl;
+	type = other.type;
+	std::cout << "Dog copy constructor, Bork!" << std::endl;
 }
 
-Animal::~Animal()
+Dog::~Dog()
 {
 	delete brain;
-	std::cout << "Animal Destructor" << std::endl;
+	std::cout << "Dog Destructor, HOWL!" << std::endl;
 }
 
-Animal& Animal::operator=(const Animal& other)
+Dog& Dog::operator=(const Dog& other)
 {
 	if (this == &other)
 		return (*this);
 	type = other.type;
 	brain = other.brain;
-	std::cout << "Animal copy assigment operator" << std::endl;
+	std::cout << "Dog copy assigment operator, Bark Bark!" << std::endl;
 	return (*this);
 }
 
-std::string Animal::getType(void) const
+void Dog::makeSound() const
 {
-	std::cout << "Animal getType" << std::endl;
-	return (this->type);
+	 std::cout << "Woof!" << std::endl;
 }
 
-void Animal::setType(std::string str)
-{
-	std::cout << "Animal setType" << std::endl;
-	this->type = str;
-}
-
-void Animal::makeSound() const
-{
-	 std::cout << "Animal * silence *" << std::endl;
-}
-
-void	Animal::setBrain(int i, std::string idea)
+void	Dog::setBrain(int i, std::string idea)
 {
 	if (i > 99 || i < 0)
 	{
@@ -69,7 +57,7 @@ void	Animal::setBrain(int i, std::string idea)
 	brain->setIdea(i, idea);
 }
 
-std::string	Animal::getBrain(int i)
+std::string	Dog::getBrain(int i) const
 {
 	if (i > 99 || i < 0)
 	{
@@ -77,4 +65,16 @@ std::string	Animal::getBrain(int i)
 		return (NULL);
 	}
 	return (brain->getIdea(i));
+}
+
+std::string Dog::getType(void) const
+{
+	std::cout << "Dog getType" << std::endl;
+	return (this->type);
+}
+
+void Dog::setType(std::string str)
+{
+	std::cout << "Dog setType" << std::endl;
+	this->type = str;
 }
