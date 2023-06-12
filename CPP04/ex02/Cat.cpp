@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:04:41 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/02 11:49:34 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/12 18:12:58 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,3 @@ std::string	Cat::getBrain(int i) const
 	return (brain->getIdea(i));
 }
 
-std::string Cat::getType(void) const
-{
-	std::cout << "Cat getType" << std::endl;
-	return (this->type);
-}
-
-void Cat::setType(std::string str)
-{
-	std::cout << "Cat setType" << std::endl;
-	this->type = str;
-}

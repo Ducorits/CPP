@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 18:56:03 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/02 12:03:31 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/12 18:10:38 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ class Dog : public A_Animal
 		void makeSound(void) const;
 		void setBrain(int i, std::string idea);
 		std::string getBrain(int i) const;
-		std::string getType(void) const;
-		void setType(std::string str);
 
 	protected:
 

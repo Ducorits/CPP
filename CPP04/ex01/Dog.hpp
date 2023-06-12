@@ -28,6 +28,8 @@ class Dog : public Animal
 		Dog& operator=(const Dog& other);
 
 		void makeSound(void) const;
+		void	setBrain(int i, std::string idea);
+		std::string	getBrain(int i) const;
 
 	protected:
 

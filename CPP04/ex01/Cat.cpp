@@ -16,6 +16,7 @@
 Cat::Cat()
 {
 	type = "Cat";
+	brain = new Brain();
 	std::cout << "Cat constructor Mreeoww!" << std::endl;
 }
 
@@ -27,6 +28,7 @@ Cat::Cat(const Cat &other)
 
 Cat::~Cat()
 {
+	delete brain;
 	std::cout << "Cat Destructor, Meowie" << std::endl;
 }
 
@@ -45,3 +47,22 @@ void Cat::makeSound() const
 	 std::cout << "Meeeooow!" << std::endl;
 }
 
+void	Cat::setBrain(int i, std::string idea)
+{
+	if (i > 99 || i < 0)
+	{
+		std::cout << "Invalid index for Brain" << std::endl;
+		return ;
+	}
+	brain->setIdea(i, idea);
+}
+
+std::string	Cat::getBrain(int i) const
+{
+	if (i > 99 || i < 0)
+	{
+		std::cout << "Invalid index for Brain" << std::endl;
+		return (NULL);
+	}
+	return (brain->getIdea(i));
+}

@@ -21,9 +21,10 @@
 int	main(void)
 {
 	const Animal* meta = new Animal();
-	const WrongAnimal* a = new WrongCat();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
+	Animal* test = new Dog();
+	Animal* test2 = new Dog();
 	Animal* animals[100];
 
 	for (int i= 0; i < 100; i++)
@@ -36,21 +37,27 @@ int	main(void)
 
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
-	std::cout << a->getType() << " " << std::endl;
 	
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
-	a->makeSound();
 	meta->makeSound();
 
-	animals[10]->setBrain( 10, "What do shoes taste like?");
-	std::cout << animals[10]->getBrain(10) << std::endl;
+	static_cast<Cat*>(animals[10])->setBrain( 10, "What do shoes taste like?");
+	std::cout << static_cast<Cat*>(animals[10])->getBrain(10) << std::endl;
+
+	static_cast<Dog*>(test2)->setBrain( 10, "What do shoes taste like?");
+	std::cout << static_cast<Dog*>(test2)->getBrain(10) << std::endl;
+
+	test = test2;
+	delete test2;
+	std::cout << static_cast<Dog*>(test)->getBrain(10) << std::endl;
+
+
 
 	for (int i = 0; i < 100; i++)
 		delete animals[i];
 	delete i;
 	delete j;
-	delete a;
 	system("leaks Animals");
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 18:11:48 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/02 12:02:20 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/12 18:15:04 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,14 @@ A_Animal& A_Animal::operator=(const A_Animal& other)
 	return (*this);
 }
 
+std::string A_Animal::getType(void) const
+{
+	std::cout << "A_Animal getType" << std::endl;
+	return (this->type);
+}
+
+void A_Animal::setType(std::string str)
+{
+	std::cout << "A_Animal setType" << std::endl;
+	this->type = str;
+}

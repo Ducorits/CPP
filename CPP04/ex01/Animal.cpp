@@ -16,7 +16,6 @@
 Animal::Animal()
 {
 	type = "Animal";
-	brain = new Brain();
 	std::cout << "Animal constructor" << std::endl;
 }
 
@@ -28,7 +27,6 @@ Animal::Animal(const Animal &other)
 
 Animal::~Animal()
 {
-	delete brain;
 	std::cout << "Animal Destructor" << std::endl;
 }
 
@@ -37,7 +35,6 @@ Animal& Animal::operator=(const Animal& other)
 	if (this == &other)
 		return (*this);
 	type = other.type;
-	brain = other.brain;
 	std::cout << "Animal copy assigment operator" << std::endl;
 	return (*this);
 }

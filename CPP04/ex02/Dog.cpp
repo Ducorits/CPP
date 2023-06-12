@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 19:10:24 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/02 11:49:20 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/12 18:13:05 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,3 @@ std::string	Dog::getBrain(int i) const
 	return (brain->getIdea(i));
 }
 
-std::string Dog::getType(void) const
-{
-	std::cout << "Dog getType" << std::endl;
-	return (this->type);
-}
-
-void Dog::setType(std::string str)
-{
-	std::cout << "Dog setType" << std::endl;
-	this->type = str;
-}

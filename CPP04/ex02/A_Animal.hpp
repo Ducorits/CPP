@@ -6,7 +6,7 @@
 /*   By: dritsema <marvin@42.fr>                      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/29 18:12:12 by dritsema      #+#    #+#                 */
-/*   Updated: 2023/06/02 12:01:28 by dritsema      ########   odam.nl         */
+/*   Updated: 2023/06/12 18:10:23 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ class A_Animal
 		A_Animal& operator=(const A_Animal& other);
 
 		virtual void	makeSound(void) const = 0;
-		virtual std::string		getType(void) const = 0;
-		virtual void			setType(std::string str) = 0;
-		virtual void setBrain(int i, std::string idea) = 0;
-		virtual std::string getBrain(int i) const = 0;
+		std::string		getType(void) const;
+		void			setType(std::string str);
 
 	protected:
 		std::string type;

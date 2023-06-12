@@ -28,6 +28,8 @@ class Cat : public Animal
 		Cat& operator=(const Cat& other);
 
 		void makeSound(void) const;
+		void	setBrain(int i, std::string idea);
+		std::string	getBrain(int i) const;
 
 	protected:
 	
