@@ -14,9 +14,9 @@ SAVE	= \0337
 RESTORE	= \0338
 INSET	= $(BEGIN)$(GREEN)+ $(BLUE)
 
-NAME		=	Animals
+NAME		=	Bureaucracy
 
-SRCS		=	main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
+SRCS		=	main.cpp Bureaucrat.cpp
 
 INC			=	-I .
 
@@ -69,7 +69,7 @@ fclean: clean
 re: fclean all
 
 run: $(NAME)
-	./$(NAME)	
+	./$(NAME)
 
 debug:
 	@make DEBUG=1
