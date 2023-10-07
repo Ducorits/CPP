@@ -4,21 +4,63 @@
 #include <cstdlib>
 #include <stdexcept>
 
-Bureaucrat createBureaucrat(const std::string name, int grade)
+Bureaucrat *createBureaucrat(const std::string name, int grade)
 {
 	try
 	{
-		Bureaucrat crat(name, -10);
-		std::cout << crat << std::endl;
+		Bureaucrat *crat = new Bureaucrat(name, grade);
+		std::cout << *crat << std::endl;
 		return (crat);
 	}
 	catch (const Bureaucrat::GradeTooHighException &e)
 	{
 		std::cout << "Exception! " << e.what() << std::endl;
+		return NULL;
 	}
 	catch (const Bureaucrat::GradeTooLowException &e)
 	{
 		std::cout << "Exception! " << e.what() << std::endl;
+		return NULL;
+	}
+}
+
+void trySignForm(Bureaucrat &crat, Form &form)
+{
+	try
+	{
+		crat.signForm(form);
+	}
+	catch (const Form::GradeTooHighException &e)
+	{
+		std::cout << "Exception! " << e.what() << std::endl;
+	}
+	catch (const Form::GradeTooLowException &e)
+	{
+		std::cout << "Exception! " << e.what() << std::endl;
+	}
+}
+
+void tryPromote(Bureaucrat &bureaucrat)
+{
+	try
+	{
+		bureaucrat.promote();
+	}
+	catch (const Bureaucrat::GradeTooHighException &e)
+	{
+		std::cout << bureaucrat.getName() << " Could not be promoted. He's already the max grade!" << std::endl;
+	}
+}
+
+void tryDemote(Bureaucrat &bureaucrat)
+{
+	try
+	{
+		bureaucrat.demote();
+	}
+	catch (const Bureaucrat::GradeTooLowException &e)
+	{
+		std::cout << bureaucrat.getName() << " Could not be demoted. Any lower and they won't be distinguishable from the dirt!" << std::endl;
 	}
 }
 
@@ -26,48 +68,24 @@ int main(int argc, char **argv)
 {
 	if (argc == 3)
 	{
-		try
-		{
-			Bureaucrat crat1(argv[1], std::atoi(argv[2]));
-			std::cout << crat1 << " Custom Bureaucrat" << std::endl;
-		}
-		catch (const Bureaucrat::GradeTooHighException &e)
-		{
-			std::cout << "Exception! " << e.what() << std::endl;
-		}
-		catch (const Bureaucrat::GradeTooLowException &e)
-		{
-			std::cout << "Exception! " << e.what() << std::endl;
-		}
+		Bureaucrat *crat1;
+		crat1 = createBureaucrat(argv[1], std::atoi(argv[2]));
+		std::cout << *crat1 << " Custom Bureaucrat" << std::endl;
 	}
 	else if (argc > 1)
-		std::cout << "Wrong amount of optional arguments. Need 2" << std::endl;
-	try
-	{
-		Bureaucrat harry("Harry", 5);
+		std::cout << "Wrong amount of optional arguments. Usage: " << argv[0] << " [NAME] [GRADE]" << std::endl;
 
-		for (int i = 0; i < 150; i++)
-		{
-			harry.promote();
-			std::cout << harry << std::endl;
-		}
-	}
-	catch (const Bureaucrat::GradeTooHighException &e)
+	Bureaucrat harry("Harry", 4);
+	for (int i = 0; i < 5; i++)
 	{
-		std::cout << "Harry was promoted too many times! " << e.what() << std::endl;
+		tryPromote(harry);
+		std::cout << harry << std::endl;
 	}
-	try
+	Bureaucrat larry("Larry", 147);
+	for (int i = 0; i < 5; i++)
 	{
-		Bureaucrat harry("Harry", 145);
-
-		for (int i = 0; i < 150; i++)
-		{
-			harry.demote();
-			std::cout << harry << std::endl;
-		}
+		tryDemote(larry);
+		std::cout << larry << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooLowException &e)
-	{
-		std::cout << "Harry was demoted too many times! " << e.what() << std::endl;
-	}
+	Form the_form("Mighty Form", 50, 40);
 }

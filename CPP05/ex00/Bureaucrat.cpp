@@ -1,13 +1,13 @@
 #include <Bureaucrat.hpp>
 #include <iostream>
 
-Bureaucrat::Bureaucrat(const std::string n, int g) : name(n), grade(g)
+Bureaucrat::Bureaucrat(const std::string n, int g) : _name(n), _grade(g)
 {
-	if (this->grade < 1)
+	if (this->_grade < 1)
 	{
 		throw Bureaucrat::GradeTooHighException();
 	}
-	else if (this->grade > 150)
+	else if (this->_grade > 150)
 	{
 		throw Bureaucrat::GradeTooLowException();
 	}
@@ -33,12 +33,12 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 
 std::string Bureaucrat::getName(void) const
 {
-	return (this->name);
+	return (this->_name);
 }
 
 int Bureaucrat::getGrade(void) const
 {
-	return (this->grade);
+	return (this->_grade);
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
@@ -53,20 +53,20 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 
 void Bureaucrat::promote(void)
 {
-	this->grade -= 1;
-	if (this->grade < 1)
+	if (this->_grade - 1 < 1)
 	{
 		throw Bureaucrat::GradeTooHighException();
 	}
+	this->_grade -= 1;
 }
 
 void Bureaucrat::demote(void)
 {
-	this->grade += 1;
-	if (this->grade > 150)
+	if (this->_grade + 1 > 150)
 	{
 		throw Bureaucrat::GradeTooLowException();
 	}
+	this->_grade += 1;
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat)
