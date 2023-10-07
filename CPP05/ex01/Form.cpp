@@ -1,23 +1,22 @@
 #include <Form.hpp>
+#include <Bureaucrat.hpp>
 #include <iostream>
-#include "Bureaucrat.hpp"
 
-Form::Form(const std::string n, int g) : name(n), grade(g)
+Form::Form(const std::string n, int sg, int eg) : _name(n), _sign_grade(sg), _exec_grade(eg)
 {
-	if (this->grade < 1)
+	if (this->_sign_grade < 1 || this->_exec_grade < 1)
 	{
 		throw Form::GradeTooHighException();
 	}
-	else if (this->grade > 150)
+	else if (this->_sign_grade > 150 || this->_exec_grade > 150)
 	{
 		throw Form::GradeTooLowException();
 	}
 	std::cout << "Form constructor" << std::endl;
 }
 
-Form::Form(const Form &other)
+Form::Form(const Form &other) : _name(other.getName()), _sign_grade(other.getSignGrade()), _exec_grade(getExecGrade()), _signed(other.getSign())
 {
-	*this = other;
 	std::cout << "Form copy constructor" << std::endl;
 }
 
@@ -26,37 +25,52 @@ Form::~Form()
 	std::cout << "Form destructor" << std::endl;
 }
 
-Form& Form::operator=(const Form& other)
+std::string Form::getName(void) const
+{
+	return (this->_name);
+}
+
+int Form::getSignGrade(void) const
+{
+	return (this->_sign_grade);
+}
+
+int Form::getExecGrade(void) const
+{
+	return (this->_exec_grade);
+}
+
+bool Form::getSign(void) const
+{
+	return (this->_signed);
+}
+
+Form &Form::operator=(const Form &other)
 {
 	*this = other;
 	return (*this);
 }
 
-std::string Form::getName(void) const
+const char *Form::GradeTooHighException::what() const throw()
 {
-	return (this->name);
+	return "Grade Too High!";
 }
 
-int Form::getGrade(void) const
+const char *Form::GradeTooLowException::what() const throw()
 {
-	return (this->grade);
+	return "Grade Too Low!";
 }
 
-bool Form::getSign(void) const
+void Form::beSigned(Bureaucrat &bureaucrat)
 {
-	return (this->sig_ned);
-}
-
-void Form::beSigned(Bureaucrat& bureaucrat)
-{
-	if (bureaucrat.getGrade() <= this->grade)
-		this->sig_ned = true;
+	if (bureaucrat.getGrade() <= this->_sign_grade)
+		this->_signed = true;
 	else
 		throw Form::GradeTooLowException();
 }
 
-std::ostream& operator<<(std::ostream& os, const Form& Form)
+std::ostream &operator<<(std::ostream &os, const Form &form)
 {
-	os << Form.getName() << ", Form grade " << Form.getGrade() << " Signature.";
+	os << form.getName() << ":\n - Form sign grade: " << form.getSignGrade() << "\n - Form exec grade: " << form.getExecGrade() << "\n - Signature: " << form.getSign();
 	return (os);
 }

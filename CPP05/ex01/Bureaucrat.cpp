@@ -2,13 +2,13 @@
 #include <Form.hpp>
 #include <iostream>
 
-Bureaucrat::Bureaucrat(const std::string n, int g) : name(n), grade(g)
+Bureaucrat::Bureaucrat(const std::string n, int g) : _name(n), _grade(g)
 {
-	if (this->grade < 1)
+	if (this->_grade < 1)
 	{
 		throw Bureaucrat::GradeTooHighException();
 	}
-	else if (this->grade > 150)
+	else if (this->_grade > 150)
 	{
 		throw Bureaucrat::GradeTooLowException();
 	}
@@ -26,7 +26,7 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "Bureaucrat destructor" << std::endl;
 }
 
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
 	*this = other;
 	return (*this);
@@ -34,44 +34,56 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 
 std::string Bureaucrat::getName(void) const
 {
-	return (this->name);
+	return (this->_name);
 }
 
 int Bureaucrat::getGrade(void) const
 {
-	return (this->grade);
+	return (this->_grade);
 }
 
-void	Bureaucrat::promote(void)
+const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	this->grade -= 1;
-	if (this->grade < 1)
+	return "Grade Too High!";
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "Grade Too Low!";
+}
+
+void Bureaucrat::promote(void)
+{
+	this->_grade -= 1;
+	if (this->_grade < 1)
 	{
 		throw Bureaucrat::GradeTooHighException();
 	}
 }
 
-void	Bureaucrat::demote(void)
+void Bureaucrat::demote(void)
 {
-	this->grade += 1;
-	if (this->grade > 150)
+	this->_grade += 1;
+	if (this->_grade > 150)
 	{
 		throw Bureaucrat::GradeTooLowException();
 	}
 }
 
-void	Bureaucrat::signForm(Form& form)
+void Bureaucrat::signForm(Form &form)
 {
-	try {
+	try
+	{
 		form.beSigned(*this);
-		std::cout << this->name << " signed " << form.getName();
+		std::cout << this->_name << " signed " << form.getName();
 	}
-	catch (const Form::GradeTooLowException& e) {
-		std::cout << this->name << " couldn't sign " << form.getName() << " because " << e.what();
+	catch (const Form::GradeTooLowException &e)
+	{
+		std::cout << this->_name << " couldn't sign " << form.getName() << " because " << e.what();
 	}
 }
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat)
 {
 	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
 	return (os);

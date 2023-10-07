@@ -25,7 +25,7 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "Bureaucrat destructor" << std::endl;
 }
 
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
 	*this = other;
 	return (*this);
@@ -41,7 +41,17 @@ int Bureaucrat::getGrade(void) const
 	return (this->grade);
 }
 
-void	Bureaucrat::promote(void)
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "Grade Too High!";
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "Grade Too Low!";
+}
+
+void Bureaucrat::promote(void)
 {
 	this->grade -= 1;
 	if (this->grade < 1)
@@ -50,7 +60,7 @@ void	Bureaucrat::promote(void)
 	}
 }
 
-void	Bureaucrat::demote(void)
+void Bureaucrat::demote(void)
 {
 	this->grade += 1;
 	if (this->grade > 150)
@@ -59,7 +69,7 @@ void	Bureaucrat::demote(void)
 	}
 }
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat)
 {
 	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
 	return (os);

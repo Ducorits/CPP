@@ -8,44 +8,37 @@
 
 class Bureaucrat
 {
+public:
+	Bureaucrat(const std::string name, int grade);
+	Bureaucrat(const Bureaucrat &other);
+	~Bureaucrat();
+
+	Bureaucrat &operator=(const Bureaucrat &other);
+
+	std::string getName(void) const;
+	int getGrade(void) const;
+
+	void promote(void);
+	void demote(void);
+
+	class GradeTooHighException : public std::exception
+	{
 	public:
-		Bureaucrat(const std::string name, int grade);
-		Bureaucrat(const Bureaucrat &other);
-		~Bureaucrat();
+		const char *what() const throw();
+	};
 
-		Bureaucrat& operator=(const Bureaucrat& other);
+	class GradeTooLowException : public std::exception
+	{
+	public:
+		const char *what() const throw();
+	};
 
-		std::string getName(void) const;
-		int getGrade(void) const;
-
-		void	promote(void);
-		void	demote(void);
-
-		class GradeTooHighException : public std::exception
-		{
-			public:
-			const char * what() const throw()
-			{
-				return "Grade Too High!";
-			}
-		};
-
-		class GradeTooLowException : public std::exception
-		{
-			public:
-			const char * what() const throw()
-			{
-				return "Grade Too Low!";
-			}
-		};
-
-	protected:
-
-	private:
-		const std::string name;
-		int grade;
+protected:
+private:
+	const std::string name;
+	int grade;
 };
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
 
 #endif /* __BUREACRAT_HPP__ */

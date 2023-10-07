@@ -14,11 +14,11 @@ SAVE	= \0337
 RESTORE	= \0338
 INSET	= $(BEGIN)$(GREEN)+ $(BLUE)
 
-NAME		=	Bureaucracy
+NAME		=	FormUp
 
-SRCS		=	main.cpp Bureaucrat.cpp
+SRCS		=	main.cpp Bureaucrat.cpp Form.cpp
 
-INC			=	-I .
+INC			=	-I ./
 
 OBJS		=	$(patsubst %.cpp, obj/%.o, $(SRCS))
 
