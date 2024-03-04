@@ -87,5 +87,6 @@ int main(int argc, char **argv)
 		tryDemote(larry);
 		std::cout << larry << std::endl;
 	}
+	harry = larry;
 	Form the_form("Mighty Form", 50, 40);
 }

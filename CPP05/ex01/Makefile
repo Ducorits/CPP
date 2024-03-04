@@ -36,9 +36,9 @@ PERCENT		=	$(INSET)$(CYAN)$(shell echo \
 				$$(($(COMPILED)*100/$(TO_COMPILE)))%%)
 
 ifeq ($(DEBUG), 1)
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic -fsanitize=thread -g
+CFLAGS	= -Wall -Wextra -Werror -pedantic -fsanitize=thread -g
 else
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 -pedantic
+CFLAGS	= -Wall -Wextra -Werror -pedantic
 endif
 
 $(NAME): $(OBJS)

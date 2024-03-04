@@ -15,9 +15,8 @@ Bureaucrat::Bureaucrat(const std::string n, int g) : _name(n), _grade(g)
 	std::cout << "Bureaucrat constructor" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &other)
+Bureaucrat::Bureaucrat(const Bureaucrat &other): _name(other.getName()), _grade(other.getGrade())
 {
-	*this = other;
 	std::cout << "Bureaucrat copy constructor" << std::endl;
 }
 
@@ -28,7 +27,7 @@ Bureaucrat::~Bureaucrat()
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
-	*this = other;
+	this->_grade = other.getGrade();
 	return (*this);
 }
 

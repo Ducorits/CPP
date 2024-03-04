@@ -47,7 +47,7 @@ bool Form::getSign(void) const
 
 Form &Form::operator=(const Form &other)
 {
-	*this = other;
+	(*this)._signed = other.getSign();
 	return (*this);
 }
 
