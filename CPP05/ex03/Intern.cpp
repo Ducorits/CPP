@@ -33,6 +33,7 @@ AForm* Intern::makeForm(std::string name, std::string target) {
 		{"shrubbery creation", [](std::string target) { return new ShrubberyCreationForm(target); }}
 	};
 
+	std::cout << "Intern creates " << name << " form" << std::endl;
 	auto it = formConstructors.find(name);
 	if (it != formConstructors.end()) {
 		return it->second(target);
