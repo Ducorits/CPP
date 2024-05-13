@@ -16,8 +16,10 @@ INSET	= $(BEGIN)$(GREEN)+ $(BLUE)
 
 NAME		=	FormUp
 
-SRCS		=	main.cpp Bureaucrat.cpp Form.cpp ShrubberyCreationForm.cpp \
-				RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+SRCS		=	Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
+				RobotomyRequestForm.cpp PresidentialPardonForm.cpp \
+				test_functions.cpp \
+				test_main.cpp
 
 INC			=	-I ./
 
@@ -65,6 +67,8 @@ clean:
 fclean: clean
 	@printf "$(RED)- $(BLUE)"
 	rm -f $(NAME)
+	@printf "$(RED)- $(BLUE)"
+	rm -f *_shrubbery
 	@printf "$(RESET)"
 
 re: fclean all

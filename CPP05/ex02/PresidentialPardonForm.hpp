@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   PresidentialPardonForm.hpp                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/05/13 18:45:20 by dritsema      #+#    #+#                 */
+/*   Updated: 2024/05/13 19:13:24 by dritsema      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #pragma once
 #ifndef __PRESIDENTIALPARDONFORM_HPP__
 #define __PRESIDENTIALPARDONFORM_HPP__
@@ -18,13 +30,7 @@ class PresidentialPardonForm : public AForm
 
 		PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
 
-		std::string getName(void) const;
-		int getSignGrade(void) const;
-		int getExecGrade(void) const;
-		bool getSign(void) const;
 		std::string getTarget(void) const;
-
-		void beSigned(Bureaucrat &bureaucrat);
 
 		class GradeTooHighException : public std::exception
 		{
@@ -39,6 +45,7 @@ class PresidentialPardonForm : public AForm
 		};
 
 	protected:
+		void executeForm() const;
 	private:
 		const std::string _target;
 };

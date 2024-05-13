@@ -12,17 +12,17 @@ AForm::AForm(const std::string n, int sg, int eg) : _name(n), _sign_grade(sg), _
 	{
 		throw AForm::GradeTooLowException();
 	}
-	std::cout << "AForm constructor" << std::endl;
+	// std::cout << "AForm constructor" << std::endl;
 }
 
 AForm::AForm(const AForm &other) : _name(other.getName()), _sign_grade(other.getSignGrade()), _exec_grade(getExecGrade()), _signed(other.getSign())
 {
-	std::cout << "AForm copy constructor" << std::endl;
+	// std::cout << "AForm copy constructor" << std::endl;
 }
 
 AForm::~AForm()
 {
-	std::cout << "AForm destructor" << std::endl;
+	// std::cout << "AForm destructor" << std::endl;
 }
 
 std::string AForm::getName(void) const
@@ -61,6 +61,11 @@ const char *AForm::GradeTooLowException::what() const throw()
 	return "Grade Too Low!";
 }
 
+const char *AForm::FormNotSignedException::what() const throw()
+{
+	return "Form not signed!";
+}
+
 void AForm::beSigned(Bureaucrat &bureaucrat)
 {
 	if (bureaucrat.getGrade() <= this->_sign_grade)
@@ -73,6 +78,9 @@ void AForm::execute(Bureaucrat const & executor) const
 {
 	if (executor.getGrade() > this->_exec_grade)
 		throw AForm::GradeTooLowException();
+	if (!this->_signed)
+		throw AForm::FormNotSignedException();
+	this->executeForm();
 }
 
 std::ostream &operator<<(std::ostream &os, const AForm &form)

@@ -24,6 +24,7 @@ public:
 	void demote(void);
 
 	void signForm(AForm &form);
+	void executeForm(AForm const & form) const;
 
 	class GradeTooHighException : public std::exception
 	{

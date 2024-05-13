@@ -22,7 +22,7 @@ public:
 	int getExecGrade(void) const;
 	bool getSign(void) const;
 
-	virtual void execute(Bureaucrat const & executor) const;
+	void execute(Bureaucrat const & executor) const;
 	void beSigned(Bureaucrat &bureaucrat);
 
 	class GradeTooHighException : public std::exception
@@ -37,7 +37,14 @@ public:
 		const char *what() const throw();
 	};
 
+	class FormNotSignedException : public std::exception
+	{
+	public:
+		const char *what() const throw();
+	};
+
 protected:
+	virtual void executeForm() const = 0;
 private:
 	const std::string _name;
 	const int _sign_grade;
