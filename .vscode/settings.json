@@ -1,5 +1,6 @@
 {
 	"files.associations": {
+		"*.js": "javascript",
 		"array": "cpp",
 		"atomic": "cpp",
 		"bit": "cpp",
@@ -50,6 +51,7 @@
 		"sstream": "cpp",
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
-		"typeinfo": "cpp"
+		"typeinfo": "cpp",
+		"map": "cpp"
 	}
 }
