@@ -13,7 +13,7 @@ public:
 	ScalarConverter& operator=(const ScalarConverter& other);
 
 	// Add your method declarations here
-	convert();
+	void convert();
 
 private:
 	std::string m_value;
