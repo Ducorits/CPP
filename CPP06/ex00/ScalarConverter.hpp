@@ -6,17 +6,13 @@
 class ScalarConverter {
 public:
 	ScalarConverter();
-	ScalarConverter(const std::string& value);
-	ScalarConverter(const ScalarConverter& other);
-	~ScalarConverter();
-
-	ScalarConverter& operator=(const ScalarConverter& other);
+	virtual ~ScalarConverter();
 
 	// Add your method declarations here
-	void convert();
+	static void convert(std::string str);
 
 private:
-	std::string m_value;
+
 };
 
 #endif // SCALAR_CONVERTER_HPP
