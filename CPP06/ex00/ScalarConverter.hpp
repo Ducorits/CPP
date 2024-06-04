@@ -3,6 +3,15 @@
 
 #include <string>
 
+typedef enum
+{
+	CHAR,
+	INT,
+	FLOAT,
+	DOUBLE,
+	NONE
+} t_type;
+
 class ScalarConverter {
 public:
 	ScalarConverter();
