@@ -13,6 +13,17 @@ ScalarConverter::~ScalarConverter()
 {
 }
 
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &obj)
+{
+	(void)obj;
+	return *this;
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &obj)
+{
+	*this = obj;
+}
+
 static bool is_valid_number(std::string &str)
 {
 	std::string filter = "-+.0123456789";
