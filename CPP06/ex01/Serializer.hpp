@@ -1,6 +1,8 @@
 #ifndef SERIALIZER_HPP
 #define SERIALIZER_HPP
 
+#include <cstdint>
+
 
 struct Data
 {
@@ -21,6 +23,6 @@ class Serializer {
 		Serializer(const Serializer &obj);
 		// Operator overload
 		Serializer &operator=(const Serializer &obj);
-}
+};
 
 #endif // SERIALIZER_HPP
