@@ -2,6 +2,8 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <limits>
+#include <cmath>
 
 ScalarConverter::ScalarConverter()
 {
@@ -11,10 +13,21 @@ ScalarConverter::~ScalarConverter()
 {
 }
 
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &obj)
+{
+	(void)obj;
+	return *this;
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &obj)
+{
+	*this = obj;
+}
+
 static bool is_valid_number(std::string &str)
 {
 	std::string filter = "-+.0123456789";
-	size_t		size;
+	size_t size;
 
 	size = str.length();
 	for (size_t i = 0; i < size; i++)
@@ -29,7 +42,7 @@ static bool is_valid_number(std::string &str)
 
 static bool is_pseudo_literal(std::string &str)
 {
-	if (str == "+inf" || str == "-inf" || str == "nan" || str == "nanf" || str == "-inff" || str == "+inff")
+	if (str == "+inf" || str == "-inf" || str == "nan" || str == "nanf" || str == "-inff" || str == "+inff" || str == "inf" || str == "inff")
 		return (true);
 	return (false);
 }
@@ -38,30 +51,103 @@ static t_type determine_type(std::string &str)
 {
 	if (str.size() == 1 && !isdigit(str[0]))
 	{
-		std::cout << "is char" << std::endl;
 		return (CHAR);
 	}
-	else if ((str.find('.') != static_cast<size_t>(-2) && is_valid_number(str)) || is_pseudo_literal(str))
+	else if ((str.find('.') != static_cast<size_t>(-1) && is_valid_number(str)) || is_pseudo_literal(str))
 	{
-		std::cout << "is float or double " << std::endl;
 		if (str.back() == 'f')
 		{
-			std::cout << "is float" << std::endl;
 			return (FLOAT);
 		}
 		else
 		{
-			std::cout << "is double" << std::endl;
 			return (DOUBLE);
 		}
 	}
 	else if (is_valid_number(str))
 	{
-		std::cout << "is int " << std::endl;
 		return (INT);
 	}
-	std::cout << "input is not a valid number" << std::endl;
-	return (FAIL);
+	std::cout << "Input is not a valid literal, try using a valid literal." << std::endl;
+	return (NONE);
+}
+
+template <typename T>
+void cast_and_print(T number)
+{
+	char character;
+	int integer;
+	float floater;
+	double doubler;
+
+	if (number >= std::numeric_limits<char>::min() && number <= std::numeric_limits<char>::max())
+	{
+		character = static_cast<char>(number);
+		if (std::isprint(character))
+		{
+			std::cout << "char: '" << character << "'" << std::endl;
+		}
+		else
+		{
+			std::cout << "char: " << "Non displayable" << std::endl;
+		}
+	}
+	else
+		std::cout << "char: impossible" << std::endl;
+	if (number >= std::numeric_limits<int>::min() && number <= std::numeric_limits<int>::max())
+	{
+		integer = static_cast<int>(number);
+		std::cout << "Int: " << integer << std::endl;
+	}
+	else
+		std::cout << "Int: impossible" << std::endl;
+
+	if ((number >= std::numeric_limits<float>::lowest() && number <= std::numeric_limits<float>::max()) || std::isnan(number) || std::isinf(number))
+	{
+		floater = static_cast<float>(number);
+		std::cout << "Float: " << std::fixed << std::setprecision(1) << floater << "f" << std::endl;
+	}
+	else
+		std::cout << "Float: impossible" << std::endl;
+	doubler = static_cast<double>(number);
+	std::cout << "Double: " << std::fixed << std::setprecision(1) << doubler << std::endl;
+}
+
+static void charCase(std::string str)
+{
+	char character;
+
+	character = str[0];
+	cast_and_print<char>(character);
+}
+
+static void intCase(std::string str)
+{
+	int integer;
+
+	integer = std::stoi(str);
+	cast_and_print<int>(integer);
+}
+
+static void floatCase(std::string str)
+{
+	float floater;
+
+	floater = std::stof(str);
+	cast_and_print<float>(floater);
+}
+
+static void doubleCase(std::string str)
+{
+	double doubler;
+
+	doubler = std::stod(str);
+	cast_and_print<double>(doubler);
+}
+
+static void edgeCase(std::string str)
+{
+	(void)str;
 }
 
 /* converts a string representation of a c++
@@ -75,48 +161,30 @@ To then cast from that type to the other scalar types.
 */
 void ScalarConverter::convert(std::string str)
 {
-	double doubler;
-	int integer;
-	float floater;
-	char character;
 	t_type type;
 
 	type = determine_type(str);
-	cast_and_print();
 	try
 	{
-		switch (type)
+		if (type == CHAR)
 		{
-			case CHAR:
-				character = str[0];
-				integer = static_cast<int>(character);
-				floater = static_cast<float>(character);
-				doubler = static_cast<double>(character);
-				break;
-			case INT:
-				integer = std::stoi(str);
-				character = static_cast<char>(integer);
-				floater = static_cast<float>(integer);
-				doubler = static_cast<double>(integer);
-				break;
-			case FLOAT:
-				floater = std::stof(str);
-				character = static_cast<char>(floater);
-				integer = static_cast<int>(floater);
-				doubler = static_cast<double>(floater);
-				break;
-			case DOUBLE:
-				doubler = std::stod(str);
-				character = static_cast<char>(doubler);
-				integer = static_cast<int>(doubler);
-				floater = static_cast<float>(doubler);
-				break;
-			default:
-				character = 0;
-				floater = 0;
-				integer = 0;
-				doubler = 0;
-				break;
+			charCase(str);
+		}
+		if (type == INT)
+		{
+			intCase(str);
+		}
+		if (type == FLOAT)
+		{
+			floatCase(str);
+		}
+		if (type == DOUBLE)
+		{
+			doubleCase(str);
+		}
+		else
+		{
+			edgeCase(str);
 		}
 	}
 	catch (const std::invalid_argument &ia)
@@ -127,15 +195,4 @@ void ScalarConverter::convert(std::string str)
 	{
 		std::cerr << "Out of range error: " << oor.what() << std::endl;
 	}
-	if (std::isprint(character))
-	{
-		std::cout << "char: " << character << std::endl;
-	}
-	else
-	{
-		std::cout << "char: " << "Non displayable" << std::endl;
-	}
-	std::cout << "int: " << integer << std::endl;
-	std::cout << "float: " << std::fixed << std::setprecision(1) << floater << "f" << std::endl;
-	std::cout << "double: " << std::fixed << std::setprecision(1) << doubler << std::endl;
 }

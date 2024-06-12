@@ -16,6 +16,10 @@ class ScalarConverter {
 public:
 	ScalarConverter();
 	virtual ~ScalarConverter();
+	// Copy constructor
+	ScalarConverter(const ScalarConverter &obj);
+	// Operator overload
+	ScalarConverter &operator=(const ScalarConverter &obj);
 
 	// Add your method declarations here
 	static void convert(std::string str);

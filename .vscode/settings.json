@@ -53,5 +53,6 @@
 		"streambuf": "cpp",
 		"typeinfo": "cpp",
 		"map": "cpp"
-	}
+	},
+	"workbench.iconTheme": "vs-seti"
 }
