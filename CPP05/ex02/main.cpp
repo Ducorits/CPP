@@ -15,12 +15,7 @@ Bureaucrat *createBureaucrat(const std::string name, int grade)
 		std::cout << *crat << std::endl;
 		return (crat);
 	}
-	catch (const Bureaucrat::GradeTooHighException &e)
-	{
-		std::cout << "Exception! " << e.what() << std::endl;
-		return NULL;
-	}
-	catch (const Bureaucrat::GradeTooLowException &e)
+	catch (const std::exception &e)
 	{
 		std::cout << "Exception! " << e.what() << std::endl;
 		return NULL;
@@ -33,11 +28,7 @@ void trySignForm(Bureaucrat &crat, AForm &form)
 	{
 		crat.signForm(form);
 	}
-	catch (const AForm::GradeTooHighException &e)
-	{
-		std::cout << "Exception! " << e.what() << std::endl;
-	}
-	catch (const AForm::GradeTooLowException &e)
+	catch (const std::exception &e)
 	{
 		std::cout << "Exception! " << e.what() << std::endl;
 	}
@@ -49,7 +40,7 @@ void tryPromote(Bureaucrat &bureaucrat)
 	{
 		bureaucrat.promote();
 	}
-	catch (const Bureaucrat::GradeTooHighException &e)
+	catch (const std::exception &e)
 	{
 		std::cout << bureaucrat.getName() << " Could not be promoted. He's already the max grade!" << std::endl;
 	}
@@ -61,7 +52,7 @@ void tryDemote(Bureaucrat &bureaucrat)
 	{
 		bureaucrat.demote();
 	}
-	catch (const Bureaucrat::GradeTooLowException &e)
+	catch (const std::exception &e)
 	{
 		std::cout << bureaucrat.getName() << " Could not be demoted. Any lower and they won't be distinguishable from the dirt!" << std::endl;
 	}

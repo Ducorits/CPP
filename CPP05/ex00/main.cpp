@@ -9,20 +9,14 @@ int	main(int argc, char **argv)
 		Bureaucrat harry("Harry", -10);
 		std::cout << harry << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooHighException& e) {
-		std::cout << "Exception! " << e.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooLowException& e) {
+	catch (const std::exception& e) {
 		std::cout << "Exception! " << e.what() << std::endl;
 	}
 	try {
 		Bureaucrat harry("Harry", 200);
 		std::cout << harry << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooHighException& e) {
-		std::cout << "Exception! " << e.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooLowException& e) {
+	catch (const std::exception& e) {
 		std::cout << "Exception! " << e.what() << std::endl;
 	}
 	if (argc == 3)
@@ -31,10 +25,7 @@ int	main(int argc, char **argv)
 			Bureaucrat crat1(argv[1], std::atoi(argv[2]));
 			std::cout << crat1 << " Custom Bureaucrat" << std::endl;
 		}
-		catch (const Bureaucrat::GradeTooHighException& e) {
-			std::cout << "Exception! " << e.what() << std::endl;
-		}
-		catch (const Bureaucrat::GradeTooLowException& e) {
+		catch (const std::exception& e) {
 			std::cout << "Exception! " << e.what() << std::endl;
 		}
 	}
@@ -49,7 +40,7 @@ int	main(int argc, char **argv)
 			std::cout << harry << std::endl;
 		}
 	}
-	catch (const Bureaucrat::GradeTooHighException& e) {
+	catch (const std::exception& e) {
 		std::cout << "Harry was promoted too many times! " << e.what() << std::endl;
 	}
 	try {
@@ -61,7 +52,7 @@ int	main(int argc, char **argv)
 			std::cout << harry << std::endl;
 		}
 	}
-	catch (const Bureaucrat::GradeTooLowException& e) {
+	catch (const std::exception& e) {
 		std::cout << "Harry was demoted too many times! " << e.what() << std::endl;
 	}
 }

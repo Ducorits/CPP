@@ -15,11 +15,6 @@ Bureaucrat *createBureaucrat(const std::string name, int grade)
 		std::cout << "Exception! " << e.what() << std::endl;
 		return nullptr;
 	}
-	catch (const Bureaucrat::GradeTooLowException &e)
-	{
-		std::cout << "Exception! " << e.what() << std::endl;
-		return nullptr;
-	}
 }
 
 void trySignForm(Bureaucrat &crat, AForm &form)
@@ -28,11 +23,7 @@ void trySignForm(Bureaucrat &crat, AForm &form)
 	{
 		crat.signForm(form);
 	}
-	catch (const AForm::GradeTooHighException &e)
-	{
-		std::cout << "Exception! " << e.what() << std::endl;
-	}
-	catch (const AForm::GradeTooLowException &e)
+	catch (const std::exception &e)
 	{
 		std::cout << "Exception! " << e.what() << std::endl;
 	}
