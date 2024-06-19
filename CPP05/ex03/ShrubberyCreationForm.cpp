@@ -6,7 +6,7 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/13 15:18:08 by dritsema      #+#    #+#                 */
-/*   Updated: 2024/05/13 19:20:15 by dritsema      ########   odam.nl         */
+/*   Updated: 2024/06/19 14:39:15 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 {
 	(void)other;
 	return (*this);
+}
+
+std::string ShrubberyCreationForm::getTarget() const
+{
+	return _target;
 }
 
 void ShrubberyCreationForm::executeForm() const

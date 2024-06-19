@@ -26,6 +26,11 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &o
 	return (*this);
 }
 
+std::string RobotomyRequestForm::getTarget() const
+{
+	return _target;
+}
+
 void RobotomyRequestForm::executeForm() const
 {
 	std::cout << "Executing RobotomyRequestForm on target: " << _target << std::endl;

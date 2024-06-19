@@ -14,10 +14,19 @@ int main(int argc, char **argv)
 	{
 		Bureaucrat *crat1;
 		crat1 = createBureaucrat(argv[1], std::atoi(argv[2]));
+		if (crat1 == NULL)
+		{
+			std::cout << "Invalid Bureaucrat" << std::endl;
+			return (1);
+		}
 		std::cout << *crat1 << " Custom Bureaucrat" << std::endl;
+		return (0);
 	}
 	else if (argc > 1)
+	{
 		std::cout << "Wrong amount of optional arguments. Usage: " << argv[0] << " [NAME] [GRADE]" << std::endl;
+		return (1);
+	}
 
 	Bureaucrat harry("Harry", 4);
 	for (int i = 0; i < 5; i++)

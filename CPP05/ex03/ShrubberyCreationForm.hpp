@@ -6,7 +6,7 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/13 15:18:02 by dritsema      #+#    #+#                 */
-/*   Updated: 2024/05/13 19:13:44 by dritsema      ########   odam.nl         */
+/*   Updated: 2024/06/19 14:39:59 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,19 @@ inside it.
 */
 class ShrubberyCreationForm : public AForm
 {
-	public:
-		ShrubberyCreationForm(std::string const &target);
-		ShrubberyCreationForm(ShrubberyCreationForm const &other);
-		ShrubberyCreationForm &operator=(ShrubberyCreationForm const &other);
-		virtual ~ShrubberyCreationForm();
+public:
+	ShrubberyCreationForm(std::string const &target);
+	~ShrubberyCreationForm();
+	ShrubberyCreationForm(ShrubberyCreationForm const &other);
+	ShrubberyCreationForm &operator=(ShrubberyCreationForm const &other);
 
-	protected:
-		void executeForm() const;
-	private:
-		std::string _target;
+	std::string getTarget(void) const;
+
+protected:
+	void executeForm() const;
+
+private:
+	std::string _target;
 };
 
 #endif // SHRUBBERYCREATIONFORM_HPP
