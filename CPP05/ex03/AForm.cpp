@@ -2,7 +2,7 @@
 #include <Bureaucrat.hpp>
 #include <iostream>
 
-AForm::AForm(const std::string n, int sg, int eg) : _name(n), _sign_grade(sg), _exec_grade(eg)
+AForm::AForm(const std::string n, int sg, int eg) : _name(n), _sign_grade(sg), _exec_grade(eg), _signed(false)
 {
 	if (this->_sign_grade < 1 || this->_exec_grade < 1)
 	{

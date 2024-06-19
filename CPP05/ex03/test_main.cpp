@@ -82,6 +82,9 @@ int main(int argc, char **argv)
 	AForm *form2 = intern.makeForm("robotomy request", "Jane Smith");
 	AForm *form3 = intern.makeForm("shrubbery creation", "Treeeees");
 
+	if (form1 == NULL || form2 == NULL || form3 == NULL)
+		return (1);
+
 	Bureaucrat internBureaucrat("Intern Bureaucrat", 50);
 	internBureaucrat.signForm(*form1);
 	internBureaucrat.executeForm(*form1);
@@ -95,9 +98,6 @@ int main(int argc, char **argv)
 	delete form1;
 	delete form2;
 	delete form3;
-
-
-
 
 	return 0;
 }
