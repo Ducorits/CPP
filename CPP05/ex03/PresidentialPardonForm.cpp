@@ -28,7 +28,7 @@ std::string PresidentialPardonForm::getTarget() const
 }
 
 
-void PresidentialPardonForm::executeForm() const
+void PresidentialPardonForm::action() const
 {
 	std::cout << "Hereby we declare that " << _target << " has officially been pardoned by the galactic president, Zafod Beeblebrox." << std::endl;
 }

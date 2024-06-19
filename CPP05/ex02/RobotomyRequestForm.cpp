@@ -31,7 +31,7 @@ std::string RobotomyRequestForm::getTarget() const
 	return _target;
 }
 
-void RobotomyRequestForm::executeForm() const
+void RobotomyRequestForm::action() const
 {
 	std::cout << "Executing RobotomyRequestForm on target: " << _target << std::endl;
 

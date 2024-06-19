@@ -6,7 +6,7 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/13 15:18:02 by dritsema      #+#    #+#                 */
-/*   Updated: 2024/06/19 14:39:59 by dritsema      ########   odam.nl         */
+/*   Updated: 2024/06/19 14:46:36 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ public:
 	std::string getTarget(void) const;
 
 protected:
-	void executeForm() const;
+	void action() const;
 
 private:
 	std::string _target;

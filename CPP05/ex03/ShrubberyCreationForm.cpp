@@ -6,7 +6,7 @@
 /*   By: dritsema <dritsema@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/05/13 15:18:08 by dritsema      #+#    #+#                 */
-/*   Updated: 2024/06/19 14:39:15 by dritsema      ########   odam.nl         */
+/*   Updated: 2024/06/19 14:47:07 by dritsema      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ std::string ShrubberyCreationForm::getTarget() const
 	return _target;
 }
 
-void ShrubberyCreationForm::executeForm() const
+void ShrubberyCreationForm::action() const
 {
 	std::ofstream file;
 	file.open(_target + "_shrubbery");
