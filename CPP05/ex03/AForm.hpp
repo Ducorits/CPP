@@ -44,7 +44,7 @@ public:
 	};
 
 protected:
-	virtual void executeForm() const = 0;
+	virtual void action() const = 0;
 private:
 	const std::string _name;
 	const int _sign_grade;
