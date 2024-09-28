@@ -14,9 +14,9 @@ SAVE	= \0337
 RESTORE	= \0338
 INSET	= $(BEGIN)$(GREEN)+ $(BLUE)
 
-NAME		=	convert
+NAME		=	real
 
-SRCS		=	main.cpp ScalarConverter.cpp
+SRCS		=	main.cpp Base.cpp
 
 INC			=	-I .
 
@@ -38,7 +38,7 @@ PERCENT		=	$(INSET)$(CYAN)$(shell echo \
 ifeq ($(DEBUG), 1)
 CFLAGS	= -Wall -Wextra -Werror -pedantic -fsanitize=thread -g
 else
-CFLAGS	= -Wall -Wextra -Werror -pedantic -std=c++11
+CFLAGS	= -Wall -Wextra -Werror -pedantic
 endif
 
 $(NAME): $(OBJS)

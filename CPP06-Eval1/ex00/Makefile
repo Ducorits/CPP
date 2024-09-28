@@ -38,7 +38,7 @@ PERCENT		=	$(INSET)$(CYAN)$(shell echo \
 ifeq ($(DEBUG), 1)
 CFLAGS	= -Wall -Wextra -Werror -pedantic -fsanitize=thread -g
 else
-CFLAGS	= -Wall -Wextra -Werror -pedantic -std=c++11
+CFLAGS	= -Wall -Wextra -Werror -pedantic
 endif
 
 $(NAME): $(OBJS)
