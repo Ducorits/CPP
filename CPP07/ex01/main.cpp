@@ -7,7 +7,7 @@ int main(void)
 
 	std::cout << "Int array:" << std::endl;
 	iter(iarr, 3, print<int &>);
-	std::cout << "adding 1 to array" << std::endl;
+	std::cout << "adding 1 to whole array" << std::endl;
 	iter(iarr, 3, add<int &>);
 	std::cout << "Addition result" << std::endl;
 	iter(iarr, 3, print<int &>);

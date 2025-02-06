@@ -2,7 +2,7 @@
 #include <iostream>
 
 template <typename T>
-void	fill_array(Array<T> &arr)
+void fill_array(Array<T> &arr)
 {
 	for (size_t i = 0; i < arr.size(); i++)
 	{
@@ -10,10 +10,10 @@ void	fill_array(Array<T> &arr)
 	}
 }
 
-
 template <typename T>
-void	print_array(Array<T> arr)
+void print_array(Array<T> arr)
 {
+	std::cout << "Printing array of size: [" << arr.size() << "]" << std::endl;
 	for (size_t i = 0; i < arr.size(); i++)
 	{
 		std::cout << arr[i] << ", ";
@@ -21,11 +21,16 @@ void	print_array(Array<T> arr)
 	std::cout << std::endl;
 }
 
-int main( void ) {
+int main(void)
+{
 	Array<int> int_arr = Array<int>(30);
 	Array<int> int_arr2 = Array<int>(10);
 	Array<float> flotarr = Array<float>(50);
 	Array<float> floatarr2 = Array<float>(20);
+
+	int *a = new int();
+
+	std::cout << "a: " << *a << std::endl;
 
 	fill_array(int_arr);
 	fill_array(int_arr2);
