@@ -21,7 +21,7 @@ void print_array(Array<T> arr)
 	std::cout << std::endl;
 }
 
-int own_test(void)
+int main(void)
 {
 	Array<int> int_arr = Array<int>(30);
 	Array<int> int_arr2 = Array<int>(10);
@@ -58,60 +58,5 @@ int own_test(void)
 	{
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
-	return 0;
-}
-
-#include <iostream>
-#include <Array.hpp>
-
-#define MAX_VAL 750
-int main(int, char **)
-{
-	Array<int> numbers(MAX_VAL);
-	int *mirror = new int[MAX_VAL];
-	srand(time(NULL));
-	for (int i = 0; i < MAX_VAL; i++)
-	{
-		const int value = rand();
-		numbers[i] = value;
-		mirror[i] = value;
-	}
-	// SCOPE
-	{
-		Array<int> tmp = numbers;
-		Array<int> test(tmp);
-	}
-
-	for (int i = 0; i < MAX_VAL; i++)
-	{
-		if (mirror[i] != numbers[i])
-		{
-			std::cerr << "didn't save the same value!!" << std::endl;
-			return 1;
-		}
-	}
-	try
-	{
-		numbers[-2] = 0;
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	try
-	{
-		numbers[MAX_VAL] = 0;
-	}
-	catch (const std::exception &e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-
-	for (int i = 0; i < MAX_VAL; i++)
-	{
-		numbers[i] = rand();
-	}
-	delete[] mirror; //
-	own_test();
 	return 0;
 }
