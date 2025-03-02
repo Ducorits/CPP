@@ -15,7 +15,7 @@ public:
 	Span &operator=(const Span &other);
 	~Span();
 
-	void addNumber(unsigned int number);
+	void addNumber(int number);
 	unsigned int shortestSpan();
 	unsigned int longestSpan();
 	void print();
@@ -51,11 +51,12 @@ public:
 		for (; begin != end; begin++)
 		{
 			this->numbers_.push_back(*begin);
+			this->sorted_numbers_.insert(*begin);
 		}
 	}
 
 private:
-	size_t max_n_;
+	unsigned int max_n_;
 	std::vector<int> numbers_;
 	std::multiset<int> sorted_numbers_;
 };

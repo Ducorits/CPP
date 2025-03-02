@@ -14,7 +14,7 @@ Span &Span::operator=(const Span &other)
 
 Span::~Span() {}
 
-void Span::addNumber(unsigned int num)
+void Span::addNumber(int num)
 {
 	if (numbers_.size() < max_n_)
 	{
@@ -27,33 +27,32 @@ void Span::addNumber(unsigned int num)
 
 unsigned int Span::shortestSpan()
 {
-	if (numbers_.size() < 2)
-	{
+	if (sorted_numbers_.size() < 2)
 		throw NoSpanException();
-	}
-	unsigned int shortest_span = INT_MAX;
-	for (auto it = sorted_numbers_.begin(); std::next(it) != sorted_numbers_.end(); it++)
+
+	unsigned int shortest_span = UINT_MAX;
+	for (auto it = sorted_numbers_.begin(), next = std::next(it);
+			 next != sorted_numbers_.end();
+			 ++it, ++next)
 	{
-		auto it2 = it;
-		it2++;
-		if (abs(*it - *it2) < shortest_span)
-			shortest_span = abs(*it - *it2);
+		unsigned int diff = static_cast<unsigned int>(std::abs(*next - *it));
+		if (diff < shortest_span)
+			shortest_span = diff;
 	}
 	return shortest_span;
 }
 
 unsigned int Span::longestSpan()
 {
-	if (numbers_.size() < 2)
+	if (sorted_numbers_.size() < 2)
 	{
 		throw NoSpanException();
 	}
-	unsigned int span;
 
-	auto min = sorted_numbers_.begin();
-	auto max = sorted_numbers_.end();
-	span = *max - *min;
-	return span;
+	auto min = *sorted_numbers_.begin();
+	auto max = *sorted_numbers_.rbegin();
+
+	return static_cast<unsigned int>(max - min);
 }
 
 void Span::print()
