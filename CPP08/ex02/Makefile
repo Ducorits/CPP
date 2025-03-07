@@ -16,7 +16,7 @@ INSET	= $(BEGIN)$(GREEN)+ $(BLUE)
 
 NAME		=	mutant_stack
 
-SRCS		=	main.cpp MutantStack.tpp
+SRCS		=	main.cpp
 
 INC			=	-I .
 

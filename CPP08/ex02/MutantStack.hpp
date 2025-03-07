@@ -2,21 +2,24 @@
 #ifndef MUTANT_STACK
 #define MUTANT_STACK
 
-template <typename T>
-class MutantStack {
-	public:
-	const MutantStack<T>& top() const;
-	bool empty();
-	size_t size();
-	void push();
-	void pop();
+#include <stack>
 
+template <typename T, typename Container = std::deque<T>>
+class MutantStack : public std::stack<T, Container>
+{
+public:
+	typedef typename Container::iterator iterator;
+	typedef typename Container::const_iterator const_iterator;
 
-	private:
+	iterator begin() { return this->c.begin(); }
 
-}
+	iterator end() { return this->c.end(); }
 
+	const_iterator cbegin() { return this->c.cbegin(); }
 
+	const_iterator cend() { return this->c.cend(); }
 
+private:
+};
 
 #endif // MUTANT_STACK
