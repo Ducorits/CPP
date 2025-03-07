@@ -1,14 +1,19 @@
 #include "Span.hpp"
 #include <climits>
 
+Span::Span() : max_n_(0) {}
+
 Span::Span(unsigned int n) : max_n_(n) {}
 
-Span::Span(const Span &other) : max_n_(other.max_n_) {}
+Span::Span(const Span &other) : max_n_(other.max_n_), sorted_numbers_(other.sorted_numbers_) {}
 
 Span &Span::operator=(const Span &other)
 {
 	if (this != &other)
+	{
 		max_n_ = other.max_n_;
+		sorted_numbers_ = other.sorted_numbers_;
+	}
 	return *this;
 }
 
