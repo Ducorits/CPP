@@ -72,5 +72,36 @@ int main()
 		std::cerr << e.what() << std::endl;
 	}
 
+	Span sp3(2);
+		std::cout << "---------------------------" << std::endl;
+		std::cout << "Single number in Span of size 2" << std::endl;
+		sp3.addNumber(6);
+		std::cout << "--------SPANS-------------" << std::endl;
+	try
+	{
+		std::cout << "shortest " << sp3.shortestSpan() << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	try {
+		std::cout << "longest " << sp3.longestSpan() << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+	try
+	{
+		std::cout << "Adding more values than span size" << std::endl;
+		sp3.addNumber(2);
+		sp3.addNumber(8);
+	}
+		catch (const std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
 	return 0;
 }

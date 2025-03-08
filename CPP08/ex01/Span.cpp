@@ -5,13 +5,14 @@ Span::Span() : max_n_(0) {}
 
 Span::Span(unsigned int n) : max_n_(n) {}
 
-Span::Span(const Span &other) : max_n_(other.max_n_), sorted_numbers_(other.sorted_numbers_) {}
+Span::Span(const Span &other) : max_n_(other.max_n_), numbers_(other.numbers_), sorted_numbers_(other.sorted_numbers_) {}
 
 Span &Span::operator=(const Span &other)
 {
 	if (this != &other)
 	{
 		max_n_ = other.max_n_;
+		numbers_ = other.numbers_;
 		sorted_numbers_ = other.sorted_numbers_;
 	}
 	return *this;
@@ -27,7 +28,7 @@ void Span::addNumber(int num)
 		sorted_numbers_.insert(num);
 	}
 	else
-		throw(std::exception());
+		throw(Span::OverMaxSizeException());
 }
 
 unsigned int Span::shortestSpan()
