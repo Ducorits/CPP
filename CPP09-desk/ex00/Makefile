@@ -16,7 +16,7 @@ INSET	= $(BEGIN)$(GREEN)+ $(BLUE)
 
 NAME		=	btc
 
-SRCS		=	main.cpp BitcoinExchange.cpp BitcoinExchange.hpp
+SRCS		=	main.cpp BitcoinExchange.cpp
 
 INC			=	-I .
 
