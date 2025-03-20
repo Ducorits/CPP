@@ -41,3 +41,8 @@ void BitcoinExchange::fill_database(std::stringstream &ss)
 		const auto [it, success] = this->exchange_history_.insert({key, fvalue});
 	}
 }
+
+float BitcoinExhcange::get_rate_for_date(std::string date)
+{
+	return 0;
+}

@@ -14,6 +14,7 @@ public:
 	~BitcoinExchange();
 
 	void fill_database(std::stringstream &ss);
+	float get_rate_for_date(std::string date);
 
 private:
 	std::map<std::string, float> exchange_history_;

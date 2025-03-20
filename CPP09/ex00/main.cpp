@@ -36,10 +36,22 @@ std::stringstream read_file(char *file_name)
 	return buffer;
 }
 
-int validate_input(std::stringstream &iss)
+void process_input(std::stringstream &iss)
 {
-	(void)iss;
-	return (0);
+	std::string line;
+	// Skip first line. (date, exchange_rate)
+	std::getline(iss, line);
+	while (std::getline(iss, line))
+	{
+		std::stringstream line_stream(line);
+		std::string key, value;
+		std::getline(line_stream, key, '|');
+		std::getline(line_stream, value);
+
+		float fvalue = std::stof(value);
+	}
+
+
 }
 
 int main(int argc, char **argv)
@@ -56,10 +68,9 @@ int main(int argc, char **argv)
 			data_ss = read_file(argv[2]);
 		else
 			data_ss = read_file((char *)"data.csv");
-
-		validate_input(input_ss);
-
 		btc.fill_database(data_ss);
+		process_input(input_ss);
+
 	}
 	catch (const std::exception &e)
 	{
