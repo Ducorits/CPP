@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <set>
 
 // Data_file_name is a database
 void validate_arguments(int argc, char **argv)
@@ -36,22 +37,25 @@ std::stringstream read_file(char *file_name)
 	return buffer;
 }
 
-void process_input(std::stringstream &iss)
+void process_input(std::stringstream &iss, BitcoinExchange &btc)
 {
 	std::string line;
 	// Skip first line. (date, exchange_rate)
 	std::getline(iss, line);
 	while (std::getline(iss, line))
 	{
+		// validate_line(line);
 		std::stringstream line_stream(line);
-		std::string key, value;
-		std::getline(line_stream, key, '|');
+		std::string date, value;
+		std::getline(line_stream, date, '|');
+		date.erase(date.length() - 1, 1);
 		std::getline(line_stream, value);
 
 		float fvalue = std::stof(value);
+		float rate = btc.get_rate_for_date(date);
+
+		std::cout << date << " => " << value << " = " << (fvalue * rate) << std::endl;
 	}
-
-
 }
 
 int main(int argc, char **argv)
@@ -59,6 +63,13 @@ int main(int argc, char **argv)
 	std::stringstream data_ss;
 	std::stringstream input_ss;
 	BitcoinExchange btc;
+
+	// std::set<std::string> test_set = {"2009-02-04", "2008-02-01", "2009-02-02", "2009-01-20"};
+
+	// for (auto i : test_set)
+	// {
+	// 	std::cout << i << std::endl;
+	// }
 
 	try
 	{
@@ -69,8 +80,7 @@ int main(int argc, char **argv)
 		else
 			data_ss = read_file((char *)"data.csv");
 		btc.fill_database(data_ss);
-		process_input(input_ss);
-
+		process_input(input_ss, btc);
 	}
 	catch (const std::exception &e)
 	{

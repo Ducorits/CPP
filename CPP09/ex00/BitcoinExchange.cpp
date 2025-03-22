@@ -38,11 +38,23 @@ void BitcoinExchange::fill_database(std::stringstream &ss)
 		std::getline(line_stream, value);
 
 		float fvalue = std::stof(value);
-		const auto [it, success] = this->exchange_history_.insert({key, fvalue});
+		this->exchange_history_.insert({key, fvalue});
 	}
 }
 
-float BitcoinExhcange::get_rate_for_date(std::string date)
+// Date is the key value inside of our exchange history map.
+float BitcoinExchange::get_rate_for_date(std::string date)
 {
-	return 0;
+	float rate = 0;
+	try
+	{
+		rate = exchange_history_.at(date);
+	}
+	catch (std::exception &e)
+	{
+		e.what();
+	}
+	std::cout << rate << " for [" << date << "]" << std::endl;
+
+	return rate;
 }
