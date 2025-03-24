@@ -4,6 +4,7 @@
 
 #include <sstream>
 #include <map>
+#include <set>
 
 class BitcoinExchange
 {
@@ -18,6 +19,7 @@ public:
 
 private:
 	std::map<std::string, float> exchange_history_;
+	std::set<std::string> exchange_dates_;
 };
 
 #endif // BITCOIN_EXCHANGE

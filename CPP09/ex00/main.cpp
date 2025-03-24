@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <set>
+#include <regex>
 
 // Data_file_name is a database
 void validate_arguments(int argc, char **argv)
@@ -37,6 +38,11 @@ std::stringstream read_file(char *file_name)
 	return buffer;
 }
 
+void validate_line(std::string line)
+{
+	std::regex pattern(R"(^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])\s*\|\s*(\d+(\.\d+)?)$)");
+}
+
 void process_input(std::stringstream &iss, BitcoinExchange &btc)
 {
 	std::string line;
@@ -54,7 +60,7 @@ void process_input(std::stringstream &iss, BitcoinExchange &btc)
 		float fvalue = std::stof(value);
 		float rate = btc.get_rate_for_date(date);
 
-		std::cout << date << " => " << value << " = " << (fvalue * rate) << std::endl;
+		std::cout << date << " => " << fvalue << " = " << (fvalue * rate) << std::endl;
 	}
 }
 
@@ -63,13 +69,6 @@ int main(int argc, char **argv)
 	std::stringstream data_ss;
 	std::stringstream input_ss;
 	BitcoinExchange btc;
-
-	// std::set<std::string> test_set = {"2009-02-04", "2008-02-01", "2009-02-02", "2009-01-20"};
-
-	// for (auto i : test_set)
-	// {
-	// 	std::cout << i << std::endl;
-	// }
 
 	try
 	{
@@ -84,6 +83,6 @@ int main(int argc, char **argv)
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
 	}
-}
+	// }
