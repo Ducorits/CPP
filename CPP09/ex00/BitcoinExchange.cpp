@@ -74,7 +74,7 @@ float BitcoinExchange::get_rate_for_date(std::string date)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	std::cout << rate << " for [" << date << "]" << std::endl;
+	// std::cout << rate << " for [" << date << "]" << std::endl;
 
 	return rate;
 }

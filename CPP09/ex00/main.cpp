@@ -40,7 +40,23 @@ std::stringstream read_file(char *file_name)
 
 void validate_line(std::string line)
 {
-	std::regex pattern(R"(^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])\s*\|\s*(\d+(\.\d+)?)$)");
+	// Regex pattern for matching the input data. (YYYY-MM-DD | value) or (Date | Value)
+	// Months and days are matched to 01-12 and 01-31 respectively.
+	std::regex pattern(R"(^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])\s*\|\s*(-?\d+(\.\d+)?)$)");
+	std::smatch match;
+
+	if (std::regex_match(line, match, pattern))
+	{
+		double value = std::stod(match[4].str());
+		if (value < 0)
+			throw(std::runtime_error("Invalid value: cannot be negative. Value: " + match[4].str()));
+		else if (value > 1000)
+			throw(std::runtime_error("Invalid value: too high, should be between 0 and 1000. Value: " + match[4].str()));
+	}
+	else
+	{
+		throw(std::runtime_error("Invalid syntax: " + line));
+	}
 }
 
 void process_input(std::stringstream &iss, BitcoinExchange &btc)
@@ -50,17 +66,24 @@ void process_input(std::stringstream &iss, BitcoinExchange &btc)
 	std::getline(iss, line);
 	while (std::getline(iss, line))
 	{
-		// validate_line(line);
-		std::stringstream line_stream(line);
-		std::string date, value;
-		std::getline(line_stream, date, '|');
-		date.erase(date.length() - 1, 1);
-		std::getline(line_stream, value);
+		try
+		{
+			validate_line(line);
+			std::stringstream line_stream(line);
+			std::string date, value;
+			std::getline(line_stream, date, '|');
+			date.erase(date.length() - 1, 1);
+			std::getline(line_stream, value);
 
-		float fvalue = std::stof(value);
-		float rate = btc.get_rate_for_date(date);
+			float fvalue = std::stof(value);
+			float rate = btc.get_rate_for_date(date);
 
-		std::cout << date << " => " << fvalue << " = " << (fvalue * rate) << std::endl;
+			std::cout << date << " => " << fvalue << " = " << (fvalue * rate) << std::endl;
+		}
+		catch (std::exception &e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
 	}
 }
 
@@ -85,4 +108,4 @@ int main(int argc, char **argv)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	// }
+}
