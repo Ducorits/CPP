@@ -15,6 +15,10 @@ void solve_rpn(std::string argument)
 		{
 			stack.push(std::stod(&*it));
 		}
+		else if (*it == ' ')
+		{
+			continue;
+		}
 		else
 		{
 			a = stack.top();
@@ -31,13 +35,12 @@ void solve_rpn(std::string argument)
 				stack.push(a * b);
 		}
 	}
+	std::cout << stack.top() << std::endl;
 }
 
 int main(int argc, char **argv)
 {
-	std::stack<std::string> stack;
-
-	std::regex pattern(R"(^[1-9\*\/\-\+\s]*$)");
+	std::regex pattern(R"(^([1-9\*\/\-\+]\s)*([1-9\*\/\-\+]\s?)$)");
 
 	if (argc < 2)
 	{
@@ -54,6 +57,4 @@ int main(int argc, char **argv)
 	{
 		std::cerr << "Invalid argument: " << argument << std::endl;
 	}
-
-
 }
