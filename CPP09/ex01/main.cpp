@@ -1,42 +1,7 @@
-#include <stack>
 #include <string>
 #include <regex>
 #include <iostream>
-
-void solve_rpn(std::string argument)
-{
-	std::stack<double> stack;
-	double a;
-	double b;
-
-	for (auto it = argument.begin(); it != argument.end(); it++)
-	{
-		if (isdigit(*it))
-		{
-			stack.push(std::stod(&*it));
-		}
-		else if (*it == ' ')
-		{
-			continue;
-		}
-		else
-		{
-			a = stack.top();
-			stack.pop();
-			b = stack.top();
-			stack.pop();
-			if (*it == '+')
-				stack.push(a + b);
-			else if (*it == '-')
-				stack.push(a - b);
-			else if (*it == '/')
-				stack.push(a / b);
-			else if (*it == '*')
-				stack.push(a * b);
-		}
-	}
-	std::cout << stack.top() << std::endl;
-}
+#include <RPN.hpp>
 
 int main(int argc, char **argv)
 {
@@ -48,13 +13,17 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	std::smatch match;
-	std::string argument(argv[1]);
-	if (std::regex_match(argument, match, pattern))
+	std::string argument;
+	for (int i = 1; i < argc; i++)
 	{
-		solve_rpn(argument);
-	}
-	else
-	{
-		std::cerr << "Invalid argument: " << argument << std::endl;
+		argument = argv[i];
+		if (std::regex_match(argument, match, pattern))
+		{
+			solve_rpn(argument);
+		}
+		else
+		{
+			std::cerr << "Invalid argument!" << std::endl;
+		}
 	}
 }
