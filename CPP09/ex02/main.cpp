@@ -1,10 +1,16 @@
 #include <iostream>
 #include <regex>
 #include <vector>
+#include <deque>
+
+void sortMe()
+{
+}
 
 int PmergeMe(char **argv)
 {
 	std::vector<int> vec;
+	std::deque<int> deq;
 
 	std::regex pattern(R"(^[0-9]+$)");
 
