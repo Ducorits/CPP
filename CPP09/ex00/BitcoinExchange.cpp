@@ -39,43 +39,30 @@ void BitcoinExchange::fill_database(std::stringstream &ss)
 
 		float fvalue = std::stof(value);
 		this->exchange_history_.insert({key, fvalue});
-		this->exchange_dates_.insert(key);
 	}
 }
 
-// Date is the key value inside of our exchange history map.
-// We use a sorted date set to easily retrieve previous rates.
-// Having read a bit more I now know that the std::map is also a sorted container. Instead of using an extra set I ccould simply only use the map. Though I don't feel like changing it now.
+// Date is the key value inside of our exchange history map. We use the lower_bound() method to find the date if it exists, otherwise it returns the date GREATER than our query. We lower the iterator by 1 to find the date we actually need.
 float BitcoinExchange::get_rate_for_date(std::string date)
 {
 	float rate = 0;
 
 	try
 	{
-		// first try to find date.
-		auto find_iter = exchange_dates_.find(date);
-		// if date not found, insert date into sorted set, retrieve rate for date--, set rate for newly inserted date in exchange history.
-		if (find_iter == exchange_dates_.end())
+		auto date_iter = exchange_history_.lower_bound(date);
+		if (date_iter->first != date)
 		{
-			auto [date_it, succes] = exchange_dates_.insert(date);
-			if (succes == false)
-				throw(std::runtime_error("Failed to retrieve exchange rate"));
-			if (date_it == exchange_dates_.begin())
-			{
-				exchange_dates_.erase(*date_it);
+			if (date_iter != exchange_history_.begin())
+				date_iter--;
+			else
 				throw(std::runtime_error("No exchange history found!"));
-			}
-			rate = exchange_history_.at(*--date_it);
-			exchange_history_.insert({*++date_it, rate});
 		}
-		else
-			rate = exchange_history_.at(*find_iter);
+		rate = date_iter->second;
 	}
 	catch (std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	// std::cout << rate << " for [" << date << "]" << std::endl;
 
 	return rate;
 }
