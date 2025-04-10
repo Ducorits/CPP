@@ -45,6 +45,7 @@ void BitcoinExchange::fill_database(std::stringstream &ss)
 
 // Date is the key value inside of our exchange history map.
 // We use a sorted date set to easily retrieve previous rates.
+// Having read a bit more I now know that the std::map is also a sorted container. Instead of using an extra set I ccould simply only use the map. Though I don't feel like changing it now.
 float BitcoinExchange::get_rate_for_date(std::string date)
 {
 	float rate = 0;
