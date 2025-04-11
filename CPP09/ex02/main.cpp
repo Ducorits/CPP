@@ -3,8 +3,46 @@
 #include <vector>
 #include <deque>
 
-void sortMe()
+void binaryInsert(std::vector<int> &sorted_vec, int value)
 {
+	auto pos = std::lower_bound(sorted_vec.begin(), sorted_vec.end(), value);
+	sorted_vec.insert(pos, value);
+}
+
+void fordJohnsonSort(std::vector<int> &vec)
+{
+
+	if (vec.size() <= 1)
+		return;
+
+	std::vector<int> winners;
+	std::vector<int> losers;
+
+	size_t i = 0;
+	for (; i + 1 < vec.size(); i += 2)
+	{
+		if (vec[i] < vec[i + 1])
+		{
+			winners.push_back(vec[i + 1]);
+			losers.push_back(vec[i]);
+		}
+		else
+		{
+			winners.push_back(vec[i]);
+			losers.push_back(vec[i + 1]);
+		}
+	}
+	if (i < vec.size())
+		losers.push_back(vec[i]);
+
+	fordJohnsonSort(winners);
+
+	for (int value : losers)
+	{
+		binaryInsert(winners, value);
+	}
+
+	vec = winners;
 }
 
 int PmergeMe(char **argv)
@@ -21,7 +59,9 @@ int PmergeMe(char **argv)
 		argument = argv[i];
 		if (std::regex_match(argument, match, pattern))
 		{
-			std::cout << "good number!" << std::endl;
+			int num = std::stoi(argument);
+			vec.push_back(num);
+			deq.push_back(num);
 		}
 		else
 		{
@@ -29,6 +69,15 @@ int PmergeMe(char **argv)
 			return (1);
 		}
 	}
+
+	fordJohnsonSort(vec);
+
+	for (auto value : vec)
+	{
+		std::cout << value << " ";
+	}
+	std::cout << std::endl;
+	return 0;
 }
 
 int main(int argc, char **argv)

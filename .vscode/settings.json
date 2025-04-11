@@ -55,7 +55,9 @@
 		"map": "cpp",
 		"*.tpp": "cpp",
 		"list": "cpp",
-		"set": "cpp"
+		"set": "cpp",
+		"bitset": "cpp",
+		"regex": "cpp"
 	},
 	"workbench.iconTheme": "vs-seti"
 }
