@@ -22,14 +22,14 @@ void solve_rpn(std::string argument)
 		{
 			if (stack.empty())
 			{
-				std::cout << "Error: Operation on empty stack." << std::endl;
+				std::cerr << "Error: Operation on empty stack." << std::endl;
 				return;
 			}
 			a = stack.top();
 			stack.pop();
 			if (stack.empty())
 			{
-				std::cout << "Error: Too few numbers for operation." << std::endl;
+				std::cerr << "Error: Too few numbers for operation." << std::endl;
 				return;
 			}
 			b = stack.top();
