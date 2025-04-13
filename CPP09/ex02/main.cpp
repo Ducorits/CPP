@@ -3,13 +3,55 @@
 #include <vector>
 #include <deque>
 
-void binaryInsert(std::vector<int> &sorted_vec, int value)
+void deqBinaryInsert(std::deque<int> &sorted_deq, int value)
+{
+	auto pos = std::lower_bound(sorted_deq.begin(), sorted_deq.end(), value);
+	sorted_deq.insert(pos, value);
+}
+
+void deqFordJohnsonSort(std::deque<int> &deq)
+{
+
+	if (deq.size() <= 1)
+		return;
+
+	std::deque<int> winners;
+	std::deque<int> losers;
+
+	size_t i = 0;
+	for (; i + 1 < deq.size(); i += 2)
+	{
+		if (deq[i] < deq[i + 1])
+		{
+			winners.push_back(deq[i + 1]);
+			losers.push_back(deq[i]);
+		}
+		else
+		{
+			winners.push_back(deq[i]);
+			losers.push_back(deq[i + 1]);
+		}
+	}
+	if (i < deq.size())
+		losers.push_back(deq[i]);
+
+	deqFordJohnsonSort(winners);
+
+	for (int value : losers)
+	{
+		deqBinaryInsert(winners, value);
+	}
+
+	deq = winners;
+}
+
+void vecBinaryInsert(std::vector<int> &sorted_vec, int value)
 {
 	auto pos = std::lower_bound(sorted_vec.begin(), sorted_vec.end(), value);
 	sorted_vec.insert(pos, value);
 }
 
-void fordJohnsonSort(std::vector<int> &vec)
+void vecFordJohnsonSort(std::vector<int> &vec)
 {
 
 	if (vec.size() <= 1)
@@ -35,11 +77,11 @@ void fordJohnsonSort(std::vector<int> &vec)
 	if (i < vec.size())
 		losers.push_back(vec[i]);
 
-	fordJohnsonSort(winners);
+	vecFordJohnsonSort(winners);
 
 	for (int value : losers)
 	{
-		binaryInsert(winners, value);
+		vecBinaryInsert(winners, value);
 	}
 
 	vec = winners;
@@ -70,13 +112,23 @@ int PmergeMe(char **argv)
 		}
 	}
 
-	fordJohnsonSort(vec);
+	vecFordJohnsonSort(vec);
+	deqFordJohnsonSort(deq);
 
+	std::cout << "Vector:" << std::endl;
 	for (auto value : vec)
 	{
 		std::cout << value << " ";
 	}
 	std::cout << std::endl;
+
+	std::cout << "Deque:" << std::endl;
+	for (auto value : deq)
+	{
+		std::cout << value << " ";
+	}
+	std::cout << std::endl;
+
 	return 0;
 }
 

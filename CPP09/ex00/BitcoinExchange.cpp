@@ -25,8 +25,6 @@ BitcoinExchange::~BitcoinExchange()
 
 void BitcoinExchange::fill_database(std::stringstream &ss)
 {
-	std::map<std::string, float> database;
-
 	std::string line;
 	// Skip first line. (date, exchange_rate)
 	std::getline(ss, line);
