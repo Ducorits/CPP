@@ -57,7 +57,9 @@
 		"list": "cpp",
 		"set": "cpp",
 		"bitset": "cpp",
-		"regex": "cpp"
+		"regex": "cpp",
+		"cstring": "cpp",
+		"cinttypes": "cpp"
 	},
 	"workbench.iconTheme": "vs-seti"
 }
