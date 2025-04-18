@@ -100,15 +100,15 @@ void fordJohnsonSort(std::vector<number_t *> &vec)
 		}
 	}
 
+
+	if (winners.size() > 1)
+	fordJohnsonSort(winners);
+
 	std::cout << "winners: " << std::endl;
 	print_numvec(winners);
 	std::cout << "Rest: " << std::endl;
 	print_numvec(vec);
-
-	if (winners.size() > 1)
-		fordJohnsonSort(winners);
-
-	// Start insertion. Use jacobsthal sequence. (make binary insert to start)
+	// Start insertion. Use jacobsthal sequence.
 
 	// First we grab the loser connected to the winner on the first index.
 	auto it_winner = winners.begin();
@@ -118,9 +118,33 @@ void fordJohnsonSort(std::vector<number_t *> &vec)
 	update_indexes(vec);
 	update_indexes(winners);
 
-	for (auto value : vec)
+
+	size_t cj = 3;
+	size_t pj = 1;
+	i = cj - pj - 1;
+
+
+	while (vec.size() > 0)
 	{
-		insert(value, 0, winners.size() - 1, winners);
+		if (i > vec.size() - 1)
+			i = vec.size() - 1;
+		auto it = vec.begin() + i;
+		// If odd one has no winner
+		if ((*it)->winner)
+			insert(*it, 0, (*it)->winner->index, winners);
+		else
+			insert(*it, 0, winners.size() - 1, winners);
+		vec.erase(it);
+		if (i == 0)
+		{
+			size_t tmpj;
+			tmpj = cj + (pj * 2);
+			pj = cj;
+			cj = tmpj;
+			i = cj - pj - 1;
+		}
+		else
+			i--;
 	}
 	vec = winners;
 }
