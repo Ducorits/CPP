@@ -33,18 +33,34 @@ void print_numvec(std::vector<number_t *> &vec)
 	std::cout << std::endl;
 }
 
+void update_indexes(std::vector<number_t *> &vec)
+{
+	int i = 0;
+	for (auto value : vec)
+	{
+		value->index = i;
+		i++;
+	}
+}
+
 void insert(number_t *num, size_t start_index, size_t end_index, std::vector<number_t *> &vec)
 {
 	size_t sectionSize = end_index - start_index + 1;
-	size_t compare_index = start_index + end_index / 2;
+	size_t compare_index = (start_index + end_index) / 2;
+
+	// std::cout << "inserting: " << num->value << " into: ";
+	// print_numvec(vec);
+	// std::cout << "start_i: " << start_index << " end_i: " << end_index << " comp_i: " << compare_index << std::endl;
+	// std::cout << "section size: " << sectionSize << std::endl;
 	if (sectionSize == 1)
 	{
 		auto it = vec.begin() + compare_index;
 		vec.insert(it, num);
+		update_indexes(vec);
 	}
 	else if (num->value <= vec[compare_index]->value)
 	{
-		insert(num, start_index, compare_index - 1, vec);
+		insert(num, start_index, compare_index, vec);
 	}
 	else if (num->value > vec[compare_index]->value)
 	{
@@ -70,6 +86,7 @@ void fordJohnsonSort(std::vector<number_t *> &vec)
 			(*it)->loser = vec[i + 1];
 			vec[i + 1]->winner = *it;
 			vec.erase(it);
+			update_indexes(vec);
 		}
 		else
 		{
@@ -79,6 +96,7 @@ void fordJohnsonSort(std::vector<number_t *> &vec)
 			(*it)->loser = vec[i];
 			vec[i]->winner = *it;
 			vec.erase(it);
+			update_indexes(vec);
 		}
 	}
 
@@ -91,6 +109,15 @@ void fordJohnsonSort(std::vector<number_t *> &vec)
 		fordJohnsonSort(winners);
 
 	// Start insertion. Use jacobsthal sequence. (make binary insert to start)
+
+	// First we grab the loser connected to the winner on the first index.
+	auto it_winner = winners.begin();
+	auto it_loser = vec.begin() + (*it_winner)->loser->index;
+	winners.insert(it_winner, *it_loser);
+	vec.erase(it_loser);
+	update_indexes(vec);
+	update_indexes(winners);
+
 	for (auto value : vec)
 	{
 		insert(value, 0, winners.size() - 1, winners);
@@ -174,22 +201,12 @@ int PmergeMe(char **argv)
 	}
 
 	fordJohnsonSort(num_vec);
-	// vecFordJohnsonSort(vec, 0);
-
-	// deqFordJohnsonSort(deq);
 
 	std::cout << "Vector:" << std::endl;
 	print_numvec(num_vec);
-	// print_vec(vec);
 
 	for (auto value : num_vec)
 		delete value;
-	// std::cout << "Deque:" << std::endl;
-	// for (auto value : deq)
-	// {
-	// 	std::cout << value << " ";
-	// }
-	// std::cout << std::endl;
 
 	return 0;
 }
