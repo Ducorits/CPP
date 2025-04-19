@@ -2,22 +2,15 @@
 #include <regex>
 #include <vector>
 #include <deque>
+#include <chrono>
 
-typedef struct number_s {
+typedef struct number_s
+{
 	int value;
 	int index;
 	number_s *winner;
 	number_s *loser;
 } number_t;
-
-void print_vec(std::vector<int> &vec)
-{
-	for (auto value : vec)
-	{
-		std::cout << value << " ";
-	}
-	std::cout << std::endl;
-}
 
 void print_number(number_t num)
 {
@@ -73,11 +66,11 @@ void fordJohnsonSort(std::vector<number_t *> &vec)
 	std::vector<number_t *> winners;
 	size_t i = 0;
 
-	print_numvec(vec);
+	// print_numvec(vec);
 
 	for (; i + 1 < vec.size(); i++)
 	{
-		std::cout << "comparing: " << vec[i]->value << " and " << vec[i + 1]->value << std::endl;
+		// std::cout << "comparing: " << vec[i]->value << " and " << vec[i + 1]->value << std::endl;
 		if (vec[i]->value >= vec[i + 1]->value)
 		{
 			auto it = vec.begin() + i;
@@ -100,14 +93,13 @@ void fordJohnsonSort(std::vector<number_t *> &vec)
 		}
 	}
 
-
 	if (winners.size() > 1)
-	fordJohnsonSort(winners);
+		fordJohnsonSort(winners);
 
-	std::cout << "winners: " << std::endl;
-	print_numvec(winners);
-	std::cout << "Rest: " << std::endl;
-	print_numvec(vec);
+	// std::cout << "winners: " << std::endl;
+	// print_numvec(winners);
+	// std::cout << "Rest: " << std::endl;
+	// print_numvec(vec);
 	// Start insertion. Use jacobsthal sequence.
 
 	// First we grab the loser connected to the winner on the first index.
@@ -118,11 +110,9 @@ void fordJohnsonSort(std::vector<number_t *> &vec)
 	update_indexes(vec);
 	update_indexes(winners);
 
-
 	size_t cj = 3;
 	size_t pj = 1;
 	i = cj - pj - 1;
-
 
 	while (vec.size() > 0)
 	{
@@ -147,48 +137,6 @@ void fordJohnsonSort(std::vector<number_t *> &vec)
 			i--;
 	}
 	vec = winners;
-}
-
-void vecFordJohnsonSort(std::vector<int> &vec, int offset)
-{
-	int i = offset;
-	int index_offset;
-	int i2;
-	int sectionSize = vec.size() - offset;
-
-	if (sectionSize < 2)
-		return;
-
-	if (sectionSize % 2 == 0)
-		i2 = offset + (sectionSize / 2);
-	else
-		i2 = offset + (sectionSize / 2 + 1);
-
-	index_offset = i2;
-	print_vec(vec);
-	std::cout << "offset: " << offset << std::endl;
-	std::cout << "index_offset: " << index_offset << std::endl;
-	std::cout << "SectionSize: " << sectionSize << std::endl;
-	std::cout << "i: " << i << std::endl;
-	std::cout << "i2: " << i2 << std::endl;
-
-	while (i - offset < sectionSize / 2)
-	{
-		int tmp;
-
-		if (vec[i] > vec[i2])
-		{
-			tmp = vec[i];
-			vec[i] = vec[i2];
-			vec[i2] = tmp;
-		}
-		i++;
-		i2++;
-	}
-
-	print_vec(vec);
-	if (sectionSize > 1)
-		vecFordJohnsonSort(vec, index_offset);
 }
 
 int PmergeMe(char **argv)
@@ -224,10 +172,20 @@ int PmergeMe(char **argv)
 		}
 	}
 
-	fordJohnsonSort(num_vec);
-
-	std::cout << "Vector:" << std::endl;
+	std::cout << "Before sort:" << std::endl;
 	print_numvec(num_vec);
+
+	std::chrono::high_resolution_clock::time_point begin = std::chrono::high_resolution_clock::now();
+	fordJohnsonSort(num_vec);
+	std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
+
+	std::cout << "After sort:" << std::endl;
+	print_numvec(num_vec);
+
+	// Print timing
+	std::chrono::microseconds elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - begin);
+
+	std::cout << "Time to sort " << num_vec.size() << " elements using std::vector: " << elapsed.count() << " us" << std::endl;
 
 	for (auto value : num_vec)
 		delete value;
