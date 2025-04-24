@@ -16,7 +16,7 @@ INSET	= $(BEGIN)$(GREEN)+ $(BLUE)
 
 NAME		=	PmergeMe
 
-SRCS		=	main.cpp PmergeMe.cpp
+SRCS		=	main.cpp
 
 INC			=	-I .
 
@@ -69,7 +69,7 @@ fclean: clean
 re: fclean all
 
 run: $(NAME)
-	./$(NAME)
+	 ./$(NAME) `shuf -i 1-100000 -n 3000 | tr "\n" " "`
 
 debug:
 	@make DEBUG=1
